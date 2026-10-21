@@ -27,7 +27,7 @@ a { color: inherit; }
 .btn-outline:hover { background: var(--out-h); }
 .btn-outline:active { background: var(--out-p); }
 .hdr { position: sticky; top: 16px; z-index: 60; margin: 32px var(--m) 0; display: grid; grid-template-columns: 124px 1fr 138px; align-items: center; height: 72px; padding: 12px 24px; border-radius: 20px; background: rgba(255,255,255,.1); border: 1px solid #fff; transition: box-shadow .3s ease; }
-.hdr.stuck { box-shadow: 0 12px 32px -12px rgba(31,41,51,.22); }
+.hdr.stuck { background: rgba(255,255,255,.82); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: 0 12px 32px -12px rgba(31,41,51,.22); }
 .hdr .logo { font: 500 28px/110% var(--font-head); letter-spacing: 0; text-decoration: none; }
 .hdr .menu { display: flex; justify-self: center; gap: 4px; padding: 4px; }
 .hdr .btn-outline { justify-self: end; }
