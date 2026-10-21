@@ -1,0 +1,1116 @@
+<!doctype html><html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Costwise</title><meta name="description" content="Costwise: аудит условий банка для бизнеса. Найдём переплаты и подберём банк с выгодными условиями."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap">
+<style>
+:root { --page: #FFFFFF; --tile: #F5F7FA; --lav: #DFD1F4; --subtle: #F5F7FA; --line: #E4E7EB; --dark: #1F2933; --ink: #0D0D0C; --text2: #52606D; --muted: #7B8794; --ph: #9AA5B1; --accent: #5739FF; --violet: #A98BFF; --btn: #12052B; --btn-h: #24114A; --btn-p: #38206B; --btn-d: #ACA8B5; --out-h: #F4EEFF; --out-p: #EADFFF; --good: #1E9E6A; --font-head: "Manrope", "Inter", system-ui, sans-serif; --font-body: "Inter", system-ui, -apple-system, sans-serif; --ease: cubic-bezier(.45,.05,.2,1); --out: cubic-bezier(.22,1,.36,1); --m: 64px; color-scheme: light; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; }
+body { background: var(--page); color: var(--ink); font-family: var(--font-body); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+.sec { padding: 40px var(--m); }
+.h2 { margin: 0; font: 500 64px/110% var(--font-head); letter-spacing: 0; }
+.btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 63px; padding: 0 24px; border: 0; border-radius: 20px; background: var(--btn); color: #fff; font: 600 18px/1 var(--font-body); letter-spacing: 0; text-decoration: none; cursor: pointer; white-space: nowrap; transition: background-color .25s ease; }
+.btn-primary:hover { background: var(--btn-h); }
+.btn-primary:active { background: var(--btn-p); }
+.btn-primary .txt { position: relative; height: 1.3em; overflow: hidden; perspective: 400px; }
+.btn-primary .txt span { display: block; line-height: 1.3em; transition: transform .55s var(--out), opacity .45s ease; transform-origin: 50% 100%; }
+.btn-primary .txt .up { position: absolute; left: 0; top: 0; opacity: 0; transform: translateY(-120%) scale(.8) rotateX(50deg); }
+.btn-primary:hover .txt .st { transform: translateY(120%) scale(.8) rotateX(-50deg); opacity: 0; }
+.btn-primary:hover .txt .up { transform: none; opacity: 1; }
+.btn-primary .arr { position: relative; flex: none; width: 1.3334em; height: 1.3334em; overflow: hidden; }
+.btn-primary .arr svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transition: transform .55s var(--out); }
+.btn-primary .arr .a2 { transform: translateX(-34px) scale(.8); }
+.btn-primary:hover .arr .a1 { transform: translateX(34px); }
+.btn-primary:hover .arr .a2 { transform: none; }
+.btn-outline { display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 20px; border: 1px solid var(--btn); border-radius: 20px; color: var(--text2); font: 400 14px/1 var(--font-body); letter-spacing: 0; text-decoration: none; transition: background-color .25s ease; }
+.btn-outline:hover { background: var(--out-h); }
+.btn-outline:active { background: var(--out-p); }
+.hdr { position: sticky; top: 16px; z-index: 60; margin: 32px var(--m) 0; display: grid; grid-template-columns: 124px 1fr 138px; align-items: center; height: 72px; padding: 12px 24px; border-radius: 20px; background: rgba(255,255,255,.1); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid #fff; box-shadow: 0 0 24px rgba(31,41,51,.06); transition: box-shadow .3s ease; }
+.hdr.stuck { box-shadow: 0 12px 32px -12px rgba(31,41,51,.22); }
+.hdr .logo { font: 500 28px/110% var(--font-head); letter-spacing: 0; text-decoration: none; }
+.hdr .menu { display: flex; justify-self: center; gap: 4px; padding: 4px; border: 1px solid #fff; border-radius: 20px; background: rgba(255,255,255,.1); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.hdr .btn-outline { justify-self: end; }
+.hdr .menu a { padding: 12px 20px; font-size: 14px; line-height: 130%; color: var(--ink); text-decoration: none; border-radius: 16px; transition: color .3s ease; }
+.hdr .menu a:hover { color: var(--accent); }
+section[id] { scroll-margin-top: 112px; }
+#how { scroll-margin-top: 0; }
+.s-hero { padding: 64px var(--m) 40px; display: block; }
+.s-hero .body { height: 620px; display: grid; grid-template-columns: minmax(0, 700px) minmax(0, 1fr); column-gap: 64px; align-items: center; }
+.s-hero h1 { margin: 0; font: 500 64px/110% var(--font-head); letter-spacing: 0; }
+.s-hero .ln { display: block; position: relative; height: 70.4px; white-space: nowrap; }
+.s-hero .ln + .ln { margin-top: 8px; }
+.s-hero .rot { color: #C3CCD8; }
+.s-hero .rot b { position: absolute; left: 0; top: 0; font-weight: 500; opacity: 0; transform: translateY(78px); transition: opacity .9s cubic-bezier(.25,.46,.45,.94), transform .9s cubic-bezier(.25,.46,.45,.94); }
+.s-hero .rot b.cur { opacity: 1; transform: none; }
+.s-hero .rot b.out { opacity: 0; transform: translateY(-78px); }
+.s-hero .rot b.snap { transition: none; }
+.s-hero .lead { margin: 32px 0 0; max-width: 670px; font-size: 24px; line-height: 130%; color: var(--text2); }
+.s-hero .actions { margin-top: 64px; }
+.s-hero .vizwrap { position: relative; min-width: 0; clip-path: inset(-120px 0 -120px -120px); }
+.s-hero .viz { position: absolute; left: 0; top: 0; width: 600px; height: 620px; transform-origin: 0 0; }
+.s-hero .card { position: absolute; transform-origin: 0 0; transform: scale(.6667); background: #fff; border-radius: 24px; border: 1px solid #fff; padding: 24px; box-shadow: 0 0 32px rgba(31,41,51,.1); font-size: 14px; line-height: 130%; letter-spacing: 0; }
+.s-hero .c1 { left: 58px; top: 150px; width: 300px; }
+.s-hero .c2 { left: 308px; top: 58px; width: 288px; }
+.s-hero .c3 { left: 188px; top: 372px; width: 360px; }
+.s-hero .c1 h4 { margin: 0 0 12px; font: 600 18px/130% var(--font-body); }
+.s-hero .r { display: flex; align-items: center; gap: 12px; height: 34px; margin: 0 -8px 12px; padding: 0 8px; border-radius: 8px; }
+.s-hero .r i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.s-hero .r span { flex: 1; }
+.s-hero .r b { font-weight: 400; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-hero .r.hl { background: rgba(245,166,224,.16); }
+.s-hero .hr { height: 1px; background: var(--line); margin: 0 0 12px; }
+.s-hero .tt { display: flex; align-items: center; justify-content: space-between; font: 600 18px/130% var(--font-body); }
+.s-hero .tt b { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+.s-hero .c2 .lb { color: var(--muted); margin-bottom: 12px; font-size: 14px; }
+.s-hero .hd { display: flex; height: 18px; font-weight: 600; }
+.s-hero .hd span { flex: 1; }
+.s-hero .hd em { width: 90px; text-align: right; font-style: normal; color: #17825A; font-weight: 400; }
+.s-hero .c2 .hr { margin: 12px 0 12px; }
+.s-hero .br { display: flex; align-items: center; height: 38px; margin-bottom: 12px; }
+.s-hero .br div { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.s-hero .br small { font-size: 13px; color: var(--muted); }
+.s-hero .br em { width: 90px; text-align: right; font-style: normal; color: #17825A; }
+.s-hero .c3 { display: flex; flex-direction: column; gap: 16px; }
+.s-hero .c3 .lb { color: var(--muted); }
+.s-hero .cmp { display: flex; align-items: center; gap: 16px; }
+.s-hero .cmp small { display: block; font-size: 14px; line-height: 130%; color: var(--muted); }
+.s-hero .cmp b { display: block; white-space: nowrap; margin-top: 4px; font: 600 24px/110% var(--font-head); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.s-hero .cmp .old, .s-hero .cmp .new { flex: none; }
+.s-hero .cmp .ar { width: 28px; height: 28px; display: grid; place-items: center; }
+.s-hero .old b { color: #C8372D; }
+.s-hero .new b { color: #36CF7A; }
+.s-hero .sep { height: 1px; background: var(--line); }
+.s-hero .pill { align-self: flex-start; display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 8px; background: rgba(54,207,122,.16); color: #0E7C5A; font-size: 14px; font-weight: 600; line-height: 130%; }
+.s-hero .links { position: absolute; left: 0; top: 0; width: 600px; height: 620px; pointer-events: none; overflow: visible; }
+.s-hero .links .arr { fill: none; stroke: #B9A2EC; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.s-hero .links .arr.dash { stroke-dasharray: 5 4; opacity: 0; transition: opacity .8s ease; }
+.s-hero .links .arr.dash.show { opacity: 1; }
+.s-hero .links .tip { opacity: 0; transition: opacity .5s ease; }
+.s-hero .links .tip.show { opacity: 1; }
+.s-over { margin-top: 96px; }
+.s-over .h2 { margin-bottom: 56px; font-size: 48px; }
+.s-over .wrap { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; align-items: stretch; }
+.s-over .panel { position: relative; min-height: 365px; border-radius: 20px; background: linear-gradient(180deg, var(--lav), #fff); overflow: hidden; }
+.s-over .glass { position: absolute; left: 50%; top: 50%; width: min(440px, calc(100% - 48px)); translate: -50% -50%; padding: 32px; border-radius: 28px; background: #fff; border: 1px solid #fff; box-shadow: 0 0 32px rgba(31,41,51,.1); }
+.s-over .views { display: grid; }
+.s-over .view { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 16px; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .45s var(--ease), transform .7s var(--ease); }
+.s-over .view.on { opacity: 1; transform: none; pointer-events: auto; }
+.s-over .lbl { font-size: 14px; line-height: 130%; color: var(--text2); }
+.s-over .big { font: 500 48px/110% var(--font-body); color: var(--accent); letter-spacing: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-over .diff { display: flex; flex-direction: column; gap: 4px; }
+.s-over .rate { position: relative; height: 42px; padding-top: 24px; }
+.s-over .track2 { position: relative; height: 18px; border-radius: 999px; background: #EDEFF3; overflow: hidden; }
+.s-over .track2 .base { position: absolute; z-index: 2; left: 0; top: 0; height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #8B6CFF, #5739FF); transition: width 1.2s var(--ease); }
+.s-over .track2 .vat { position: absolute; left: 71.66%; top: 0; height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #F2B4E6, #E58BD6); transition: width .9s var(--ease) .15s; }
+.s-over .legend { display: flex; justify-content: space-between; align-items: center; height: 18px; font-size: 14px; line-height: 130%; color: var(--text2); }
+.s-over .legend .lg { display: flex; gap: 16px; white-space: nowrap; }
+.s-over .legend .lg span { display: inline-flex; align-items: center; gap: 8px; }
+.s-over .legend .k { width: 10px; height: 10px; border-radius: 50%; }
+.s-over .k.a { background: #5739FF; }
+.s-over .k.c { background: #F5A6E0; }
+.s-over .k.p { background: #fff; border: 1px solid #C9CDD6; }
+.s-over .legend .fact { color: var(--ink); white-space: nowrap; }
+.s-over .legend .fact b { font-weight: 400; font-variant-numeric: tabular-nums; }
+.s-over .segs { display: grid; grid-template-columns: repeat(21, 1fr); gap: 3px; }
+.s-over .segs i { height: 18px; border-radius: 5px; background: #EDEFF3; transition: background .5s var(--ease), transform .6s var(--ease), box-shadow .6s var(--ease); }
+.s-over .segs i.p { background: #fff; border: 1px solid #C9CDD6; }
+.s-over .segs i.on { background: linear-gradient(180deg, #9C80F6, #5739FF); border-color: transparent; transform: translateY(-2px); box-shadow: 0 6px 10px -6px rgba(87,57,255,.7); }
+.s-over .stm { display: grid; gap: 5px; }
+.s-over .sr { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; padding: 2px 10px; border-radius: 8px; font-size: 13px; line-height: 18px; color: var(--muted); background: #F5F7FA; opacity: 0; transform: translateY(8px); transition: opacity .5s var(--ease), transform .7s var(--ease), background .6s var(--ease), color .6s var(--ease); }
+.s-over .sr b { font-weight: 400; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-over .sr.show { opacity: 1; transform: none; }
+.s-over .sr.pk.hl { background: rgba(169,139,255,.22); color: var(--ink); }
+.s-over .tail { display: none; }
+.s-over .clauses { display: grid; gap: 5px; }
+.s-over .cl { display: flex; align-items: center; gap: 10px; padding: 1px 10px; border-radius: 8px; background: #F5F7FA; font-size: 14px; line-height: 20px; transition: background .5s var(--ease), box-shadow .5s var(--ease); }
+.s-over .cl .nm { flex: 1; }
+.s-over .cl .st { font-size: 12px; padding: 1px 10px; border-radius: 999px; opacity: 0; transform: translateX(6px); transition: opacity .45s var(--ease), transform .6s var(--ease); white-space: nowrap; }
+.s-over .cl .ok { color: var(--text2); background: #fff; }
+.s-over .cl .bad { color: #fff; background: linear-gradient(90deg, #8B6CFF, #5739FF); }
+.s-over .cl.scan { background: #EDE8FF; }
+.s-over .cl.done .st { opacity: 1; transform: none; }
+.s-over .cl.flag.done { background: rgba(169,139,255,.22); }
+.s-over .tabs { display: block; }
+.s-over .tab { position: relative; display: block; width: 100%; text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 24px 16px; cursor: pointer; color: var(--ph); transition: color .4s ease; }
+.s-over .tab:hover { color: var(--text2); }
+.s-over .tab.on { color: var(--ink); }
+.s-over .tab::before { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #E4E7EB; opacity: 0; transition: opacity .4s ease; }
+.s-over .tab.on::before { opacity: 1; }
+.s-over .tab::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: #A98BC8; }
+.s-over .tab.on::after { animation: o-fill var(--dur, 6s) linear forwards; }
+.s-over .tabs.paused .tab.on::after, .s-over .tabs:not(.live) .tab.on::after { animation-play-state: paused; }
+.s-over .tab-head { display: flex; align-items: center; gap: 14px; height: 29px; font-size: 20px; line-height: 130%; }
+.s-over .tab-head svg { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.s-over .more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .7s var(--ease), opacity .5s ease; opacity: 0; }
+.s-over .tab.on .more { grid-template-rows: 1fr; opacity: 1; }
+.s-over .more > div { overflow: hidden; }
+.s-over .more p { margin: 10px 0 0; font-size: 16px; line-height: 130%; color: var(--text2); }
+@keyframes o-fill { from { width: 0; } to { width: 100%; } }
+.s-aud { margin-top: 96px; }
+.s-aud .copy { display: flex; flex-direction: column; gap: 56px; margin-bottom: 40px; }
+.s-aud .copy .h2 { font-size: 48px; }
+.s-aud .lead { margin: 0; max-width: 646px; font-size: 24px; line-height: 130%; color: var(--text2); }
+.s-aud .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.s-aud .card { position: relative; overflow: hidden; aspect-ratio: 1 / 1; padding: 32px; border-radius: 20px; background: var(--tile); opacity: var(--o, 0); translate: 0 calc(var(--y, 40) * 1px); }
+.s-aud .card h3 { position: relative; z-index: 2; margin: 0; font: 600 20px/130% var(--font-head); letter-spacing: 0; }
+.s-aud .card img { position: absolute; left: 0; top: 30.7%; width: 100%; height: auto; pointer-events: none; user-select: none; }
+.s-sol { margin-top: 96px; }
+.s-sol .hd { margin-bottom: 40px; }
+.s-sol .hd h2 { margin: 0; font: 500 48px/110% var(--font-head); letter-spacing: 0; }
+.s-sol .hd p { margin: 56px 0 0; font-size: 24px; line-height: 130%; color: var(--text2); }
+.s-sol .bg { display: grid; grid-template-columns: minmax(0, 813fr) minmax(0, 479fr); gap: 20px; align-items: stretch; }
+.s-sol .frame { position: relative; width: 100%; }
+.s-sol .tile { position: absolute; left: 0; top: 0; width: 813px; height: 457px; border-radius: 20px; overflow: hidden; background: linear-gradient(180deg, var(--lav), #fff); isolation: isolate; transform-origin: 0 0; }
+.s-sol .head { z-index: 2; position: absolute; left: 32px; top: 32px; width: 749px; }
+.s-sol .head h3 { margin: 0; font: 500 32px/110% var(--font-head); letter-spacing: 0; }
+.s-sol .head p { margin: 12px 0 0; font-size: 16px; line-height: 130%; color: var(--text2); }
+.s-sol .scene { position: absolute; inset: 0; z-index: 2; }
+.s-sol .stm { position: absolute; left: 32px; top: 140px; width: 340px; height: 281px; background: #fff; border: 1px solid #fff; border-radius: 24px; padding: 24px 20px 0; box-shadow: 0 0 32px rgba(31,41,51,.1); overflow: hidden; }
+.s-sol .stm-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; font: 600 18px/130% var(--font-body); color: var(--ink); }
+.s-sol .stm-h span:last-child { color: var(--muted); font: 400 14px/130% var(--font-body); }
+.s-sol .rows { position: relative; }
+.s-sol .row { display: flex; align-items: center; gap: 8px; min-height: 34px; margin: 0 -8px 4px; padding: 8px; border-radius: 8px; font-size: 14px; line-height: 130%; color: var(--ink); transition: background-color .45s ease; }
+.s-sol .row .dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c, transparent); opacity: 0; transform: scale(.3); transition: opacity .35s ease, transform .5s var(--out); }
+.s-sol .row .d { flex: none; width: 38px; color: var(--ph); }
+.s-sol .row .n { flex: 1; min-width: 0; color: var(--ink); }
+.s-sol .row .a { flex: none; margin-left: auto; white-space: nowrap; text-align: right; }
+.s-sol .row .d, .s-sol .row .a { font-variant-numeric: tabular-nums; }
+.s-sol .row.hit { background: color-mix(in srgb, var(--c) 16%, transparent); }
+.s-sol .row.hit .dot { opacity: 1; transform: none; }
+.s-sol .beam { position: absolute; left: 0; right: 0; top: 0; height: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .5s ease; }
+.s-sol .beam.on { opacity: 1; }
+.s-sol .beam .core { position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: linear-gradient(90deg, rgba(139,108,255,0), #8B6CFF 14%, #fff 50%, #5DE3D2 86%, rgba(93,227,210,0)); box-shadow: 0 0 6px 1px rgba(255,255,255,.9), 0 0 18px 3px rgba(139,108,255,.55), 0 0 36px 8px rgba(93,227,210,.22); }
+.s-sol .beam .trail { position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: repeating-linear-gradient(180deg, rgba(255,255,255,0) 0 2px, rgba(255,255,255,.35) 2px 3px), linear-gradient(0deg, rgba(139,108,255,.20), rgba(139,108,255,0)); -webkit-mask-image: linear-gradient(0deg, #000, transparent); mask-image: linear-gradient(0deg, #000, transparent); }
+.s-sol .beam.up .trail { bottom: auto; top: 0; transform: scaleY(-1); }
+.s-sol .res { position: absolute; left: 445px; top: 140px; width: 336px; height: 259px; background: #fff; border: 1px solid #fff; border-radius: 24px; padding: 24px; box-shadow: 0 0 32px rgba(31,41,51,.1); }
+.s-sol .res h4 { margin: 0 0 12px; font: 600 18px/130% var(--font-body); }
+.s-sol .cat { display: flex; align-items: center; gap: 12px; height: 34px; margin: 0 -8px 12px; padding: 0 8px; border-radius: 8px; font-size: 14px; line-height: 130%; transition: background-color .5s ease; }
+.s-sol .cat i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; opacity: .35; transition: opacity .4s ease; }
+.s-sol .cat span.n { flex: 1; white-space: nowrap; color: var(--muted); transition: color .4s ease; }
+.s-sol .cat b { font-weight: 400; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-sol .cat.on i { opacity: 1; }
+.s-sol .cat.on span.n { color: var(--ink); }
+.s-sol .cat.pulse { background: color-mix(in srgb, var(--c) 16%, transparent); }
+.s-sol .sum { display: flex; align-items: center; justify-content: space-between; margin-top: 0; padding: 12px 0 0; border-top: 1px solid var(--line); font: 600 18px/130% var(--font-body); }
+.s-sol .sum b { color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-sol .links { position: absolute; inset: 0; width: 813px; height: 457px; z-index: 4; pointer-events: none; overflow: visible; }
+.s-sol .links path { fill: none; stroke-linecap: round; }
+.s-sol .mkt { position: relative; min-width: 0; display: flex; flex-direction: column; min-height: 457px; padding: 32px; border-radius: 20px; background: var(--tile); }
+.s-sol .mkt h3 { margin: 0; font: 500 32px/110% var(--font-head); letter-spacing: 0; }
+.s-sol .mkt p { max-width: 360px; margin: 16px 0 0; font-size: 16px; line-height: 130%; color: var(--text2); }
+.s-sol .belt { margin-top: 20px; height: 56px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%); }
+.s-sol .track { display: flex; gap: 12px; width: max-content; animation: s-run 24s linear infinite; will-change: transform; }
+.s-sol .mkt:hover .track { animation-play-state: paused; }
+.s-sol .logo { flex: none; width: 56px; height: 56px; border-radius: 50%; display: block; }
+.s-sol .mkt .btn-primary { margin-top: auto; align-self: flex-start; }
+@keyframes s-run { to { transform: translateX(calc(-50% - 6px)); } }
+.s-how { margin-top: 96px; padding: 0; --k: 1; --ph: 467px; }
+.s-how .pin { position: relative; height: calc(var(--ph) + 140vh); padding: 40px 0; }
+.s-how .sticky { position: sticky; top: max(104px, calc(50vh - var(--ph) / 2)); height: var(--ph); margin: 0 var(--m); }
+.s-how .panel { position: relative; width: 100%; height: 100%; border-radius: 20px; background: var(--tile); overflow: hidden; }
+.s-how .intro { position: absolute; left: calc(32px * var(--k)); top: 50%; transform: translateY(-50%); width: calc(448px * var(--k)); }
+.s-how .intro h2 { margin: 0; font: 500 calc(48px * var(--k))/110% var(--font-head); letter-spacing: 0; }
+.s-how .cta { margin-top: calc(56px * var(--k)); height: calc(63px * var(--k)); padding: 0 calc(24px * var(--k)); border-radius: calc(20px * var(--k)); font-size: calc(18px * var(--k)); gap: calc(8px * var(--k)); }
+.s-how .stage { position: absolute; inset: 0; }
+.s-how .card { position: absolute; left: 0; top: 0; width: calc(313px * var(--k)); height: calc(339px * var(--k)); border-radius: calc(20px * var(--k)); background: #fff; overflow: hidden; transform-origin: 50% 50%; will-change: transform; backface-visibility: hidden; box-shadow: 0 18px 36px -18px rgba(31,41,51,.2); }
+.s-how .card .t { position: absolute; left: calc(32px * var(--k)); top: calc(32px * var(--k)); width: calc(249px * var(--k)); }
+.s-how .card h3 { margin: 0; font: 600 calc(20px * var(--k))/130% var(--font-head); letter-spacing: 0; }
+.s-how .card p { margin: calc(12px * var(--k)) 0 0; font-size: calc(16px * var(--k)); line-height: 130%; color: var(--text2); }
+.s-how .card img { position: absolute; left: 0; top: 47.2%; width: 100%; height: auto; pointer-events: none; user-select: none; will-change: transform; transform-origin: 72% 70%; }
+.s-rev { margin-top: 96px; padding: 0; }
+.s-rev .rv { position: relative; height: 700px; overflow: hidden; }
+.s-rev .scaler { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; transform-origin: 0 0; }
+.s-rev .title { position: absolute; left: 0; right: 0; top: 56px; margin: 0; text-align: center; font: 500 64px/110% var(--font-head); letter-spacing: 0; }
+.s-rev .stage { position: absolute; left: 0; top: 190px; width: 1440px; height: 560px; cursor: grab; touch-action: pan-y; user-select: none; }
+.s-rev .stage.drag { cursor: grabbing; }
+.s-rev .stage:focus-visible { outline: 2px solid var(--accent); outline-offset: -6px; }
+.s-rev .card { position: absolute; left: 50%; top: 12px; width: 400px; height: 536px; margin-left: -200px; transform-origin: 50% 50%; cursor: pointer; transition: transform 1.4s var(--ease); }
+.s-rev .card.jump, .s-rev .stage.drag .card, .s-rev .card.jump .ph, .s-rev .stage.drag .ph { transition: none; }
+.s-rev .ph img { -webkit-user-drag: none; pointer-events: none; display: block; width: 100%; height: 100%; object-fit: cover; }
+.s-rev .phw { position: absolute; inset: 0; }
+.s-rev .ph { position: absolute; inset: 0; overflow: hidden; background: #DDE2E8; transition: clip-path 1.4s var(--ease); }
+.s-rev .who { position: absolute; left: 20px; top: 20px; z-index: 3; background: rgba(255,255,255,.28); border: 1px solid rgba(255,255,255,.55); color: var(--ink); border-radius: 8px; padding: 11px 15px; opacity: 0; transition: opacity .35s ease; }
+.s-rev .card.on .who { -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3); }
+.s-rev .who b { display: block; font: 400 14px/140% var(--font-body); }
+.s-rev .who span { display: block; margin-top: 2px; font: 400 12px/140% var(--font-body); color: var(--text2); }
+.s-rev .card.on .who { opacity: 1; transition: opacity .9s ease .6s; }
+.s-rev .res { position: absolute; inset: 0; pointer-events: none; }
+.s-rev .res > * { position: absolute; opacity: 0; transform: translateY(18px); transition: opacity .35s ease, transform .35s ease; }
+.s-rev .card.on .res > * { opacity: 1; transform: none; transition: opacity .9s ease, transform 1.1s var(--out); }
+.s-rev .card.on .res > *:nth-child(1) { transition-delay: .75s; }
+.s-rev .card.on .res > *:nth-child(2) { transition-delay: .95s; }
+.s-rev .card.on .res > *:nth-child(3) { transition-delay: 1.15s; }
+.s-rev .box { width: 250px; background: #fff; border-radius: 16px; padding: 12px 16px 16px; box-shadow: 0 16px 34px -14px rgba(31,41,51,.32); }
+.s-rev .tag { display: inline-block; font: 600 12px/1 var(--font-body); padding: 5px 8px; border-radius: 6px; background: #EEF0F4; color: var(--text2); white-space: nowrap; }
+.s-rev .new .tag { background: #EEE8FF; color: var(--accent); }
+.s-rev .sum { margin-top: 8px; font: 500 32px/1.1 var(--font-head); letter-spacing: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-rev .note { margin-top: 6px; font-size: 13px; line-height: 1.3; color: var(--muted); white-space: nowrap; }
+.s-rev .new .note { color: var(--accent); font-weight: 600; }
+.s-rev .swap { z-index: 4; width: 40px; height: 40px; border-radius: 6px; background: var(--accent); display: grid; place-items: center; box-shadow: 0 12px 22px -8px rgba(87,57,255,.55); }
+.s-rev .swap svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.s-rev .pill { background: var(--accent); color: #fff; border-radius: 14px; padding: 10px 16px; font: 500 28px/1.1 var(--font-head); box-shadow: 0 14px 28px -10px rgba(87,57,255,.55); white-space: nowrap; }
+.s-rev .pill small { display: block; margin-top: 5px; font: 600 12px/1.2 var(--font-body); }
+.s-rev .rowx { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; line-height: 1.3; padding: 5px 0; white-space: nowrap; }
+.s-rev .rowx b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.s-rev .rowx + .rowx { border-top: 1px solid #EEF0F4; }
+.s-rev .bar { height: 8px; border-radius: 4px; background: var(--line); margin-top: 6px; overflow: hidden; }
+.s-rev .bar i { display: block; height: 100%; border-radius: 4px; }
+.s-rev .tg { width: 34px; height: 20px; border-radius: 10px; background: #D5DAE0; position: relative; flex: none; }
+.s-rev .tg::after { content: ""; position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.s-rev .ttl { font: 600 13px/1.2 var(--font-body); margin: 8px 0 6px; }
+.s-faq { margin-top: 96px; }
+.s-faq .cols { display: grid; grid-template-columns: 400px minmax(0, 1fr); column-gap: 64px; align-items: start; }
+.s-faq .list { border-top: 0; }
+.s-faq .q { position: relative; border-bottom: 1px solid var(--line); }
+.s-faq .qb { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 24px 16px; border: 0; background: transparent; text-align: left; cursor: pointer; font: 600 20px/110% var(--font-head); color: var(--ph); letter-spacing: 0; transition: color .3s ease; }
+.s-faq .qb:hover { color: var(--text2); }
+.s-faq .q.open .qb { color: var(--ink); padding-bottom: 12px; }
+.s-faq .ico { position: relative; flex: none; width: 38px; height: 38px; border-radius: 8px; display: grid; place-items: center; border: 1px solid transparent; transition: background-color .3s ease, border-color .3s ease; }
+.s-faq .ico::before, .s-faq .ico::after { content: ""; position: absolute; width: 14px; height: 1.6px; border-radius: 2px; background: currentColor; transition: transform .4s var(--out), opacity .3s ease; }
+.s-faq .ico::after { transform: rotate(90deg); }
+.s-faq .q.open .ico { width: 40px; height: 40px; margin: 0; background: var(--subtle); border-color: var(--line); }
+.s-faq .q.open .ico::after { transform: rotate(0); opacity: 0; }
+.s-faq .ans { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
+.s-faq .q.open .ans { grid-template-rows: 1fr; }
+.s-faq .ans > div { overflow: hidden; }
+.s-faq .ans p { margin: 0; padding: 0 16px 24px; font-size: 16px; line-height: 130%; color: var(--text2); max-width: 720px; }
+.s-apply { margin-top: 96px; padding: 40px var(--m); }
+.s-apply .panel { position: relative; height: 560px; border-radius: 28px; background: #4A3667; overflow: hidden; }
+.s-apply .circle { position: absolute; left: 50%; top: 50%; border-radius: 50%; transform: translate(-50%, -50%) translateY(var(--cy, 0px)) scale(var(--cs, 1)); will-change: transform; }
+.s-apply .c1 { width: 422px; height: 422px; background: #392A50; }
+.s-apply .c2 { width: 782px; height: 782px; background: #3E2E56; }
+.s-apply .c3 { width: 1202px; height: 1202px; background: #43315D; }
+.s-apply .box { position: absolute; z-index: 1; left: 72px; top: 50%; transform: translateY(-50%); width: 640px; text-align: left; }
+.s-apply h2 { margin: 0 0 40px; max-width: 620px; font: 500 64px/110% var(--font-head); letter-spacing: 0; color: #fff; }
+.s-apply .l { display: block; position: relative; overflow: hidden; height: 70.4px; }
+.s-apply .l > span { display: block; transform: translateY(108%); transition: transform 1.1s var(--out); }
+.s-apply.in .l > span { transform: none; }
+.s-apply.in .l:nth-child(2) > span { transition-delay: .12s; }
+.s-apply .sub { margin: 0; max-width: 640px; font: 400 24px/130% var(--font-body); color: #C3CCD8; opacity: 0; transform: translateY(14px); transition: opacity 1s var(--out) .35s, transform 1.1s var(--out) .35s; }
+.s-apply.in .sub { opacity: 1; transform: none; }
+.s-apply .lead { position: absolute; z-index: 1; right: 72px; top: 50%; width: 440px; padding: 32px; border-radius: 28px; background: #fff; box-shadow: 0 40px 80px -40px rgba(0,0,0,.6); opacity: 0; transform: translateY(calc(-50% + 24px)); transition: opacity 1s var(--out) .45s, transform 1.2s var(--out) .45s; }
+.s-apply.in .lead { opacity: 1; transform: translateY(-50%); }
+.s-apply .f { display: block; width: 100%; height: 58px; margin: 0 0 16px; padding: 0 20px; border: 1px solid transparent; border-radius: 6px; background: var(--subtle); font: 400 16px/1 var(--font-body); color: var(--ink); outline: none; transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease; }
+.s-apply .f::placeholder { color: var(--ph); }
+.s-apply .f:hover { border-color: #C5CBD3; }
+.s-apply .f:focus { background: #fff; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(87,57,255,.14); }
+.s-apply .f.bad { border-color: #E5484D; background: #FFF1F1; }
+.s-apply .btn { position: relative; width: 100%; height: 63px; margin-top: 0; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 0; background: transparent; color: #fff; font: 600 18px/1 var(--font-body); cursor: pointer; }
+.s-apply .btn .bg { position: absolute; inset: 0; border-radius: 20px; background: var(--btn); transition: background-color .25s ease; z-index: 0; }
+.s-apply .btn:hover .bg { background: var(--btn-h); }
+.s-apply .btn:active .bg { background: var(--btn-p); }
+.s-apply .btn .txt { position: relative; z-index: 1; height: 22px; overflow: hidden; perspective: 400px; }
+.s-apply .btn .txt span { display: block; line-height: 22px; transition: transform .55s var(--out), opacity .45s ease; transform-origin: 50% 100%; }
+.s-apply .btn .txt .up { position: absolute; left: 0; top: 0; opacity: 0; transform: translateY(-120%) scale(.8) rotateX(50deg); }
+.s-apply .btn:hover .txt .st { transform: translateY(120%) scale(.8) rotateX(-50deg); opacity: 0; }
+.s-apply .btn:hover .txt .up { transform: none; opacity: 1; }
+.s-apply .btn .arr { position: relative; z-index: 1; width: 24px; height: 24px; overflow: hidden; }
+.s-apply .btn .arr svg { position: absolute; left: 0; top: 0; transition: transform .55s var(--out); }
+.s-apply .btn .arr .a2 { transform: translateX(-32px) scale(.8); }
+.s-apply .btn:hover .arr .a1 { transform: translateX(32px); }
+.s-apply .btn:hover .arr .a2 { transform: none; }
+.s-apply .agree { margin: 16px 0 0; font-size: 12px; line-height: 130%; color: var(--muted); }
+.s-apply .ok { display: none; text-align: center; padding: 64px 8px; }
+.s-apply .ok b { display: block; font: 500 28px/1.2 var(--font-head); letter-spacing: 0; color: var(--ink); margin-bottom: 12px; }
+.s-apply .ok span { font-size: 16px; line-height: 1.5; color: var(--text2); }
+.s-apply .lead.done > :not(.ok) { display: none; }
+.s-apply .lead.done .ok { display: block; }
+.foot { margin-top: 0; padding: 72px var(--m) 64px; display: grid; grid-template-columns: 360px 428px 1fr; column-gap: 48px; align-items: start; }
+.foot .brand { font: 700 40px/110% var(--font-head); letter-spacing: 0; }
+.foot .legal { margin: 24px 0 0; font-size: 16px; line-height: 130%; color: var(--ph); }
+.foot h4 { margin: 0 0 24px; font: 600 20px/110% var(--font-head); letter-spacing: 0; }
+.foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.foot li a { display: block; font-size: 16px; line-height: 130%; text-decoration: none; transition: color .25s ease; }
+.foot li a:hover { color: var(--accent); }
+.foot .soc { display: flex; gap: 12px; margin-top: 24px; }
+.foot .soc a { width: 56px; height: 56px; border-radius: 16px; background: rgba(13,13,12,.06); display: grid; place-items: center; transition: background-color .25s ease; }
+.foot .soc a:hover { background: rgba(13,13,12,.12); }
+.foot .soc a:active { background: rgba(13,13,12,.2); }
+.foot .soc svg { width: 24px; height: 24px; fill: none; stroke: var(--dark); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.foot .soc a:first-child svg .fill { fill: var(--dark); stroke: none; }
+.foot .soc a:first-child svg .cut { stroke: #EEEEEF; stroke-width: 1.6; }
+@media (max-width: 1100px) {
+  :root { --m: 32px; }
+  .h2, .s-rev .title { font-size: 48px; }
+  .s-over .wrap { display: block; }
+  .s-over .panel { margin-bottom: 24px; }
+  .s-aud .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-sol .bg { display: block; }
+  .s-sol .mkt { margin-top: 20px; min-height: 360px; }
+  .s-sol .hd h2 { font-size: 40px; }
+  .s-sol .hd p { font-size: 20px; }
+  .s-faq .cols { display: block; }
+  .s-faq .h2 { margin-bottom: 32px; }
+  .foot { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+}
+@media (max-width: 900px) {
+  .hdr { grid-template-columns: 1fr auto; }
+  .hdr .menu { display: none; }
+  .s-hero { padding: 32px 16px 0; }
+  .s-hero .body { height: auto; }
+  .hdr { margin: 16px 16px 0; top: 8px; height: 60px; padding: 8px 16px; }
+  .hdr .menu { display: none; }
+  .hdr .logo { font-size: 24px; }
+  .s-hero .body { display: block; }
+  .s-hero h1 { font-size: 40px; line-height: 44px; }
+  .s-hero .ln { height: 44px; }
+  .s-hero .rot b { transform: translateY(44px); }
+  .s-hero .rot b.out { transform: translateY(-44px); }
+  .s-hero .lead { font-size: 18px; margin-top: 24px; }
+  .s-hero .actions { margin-top: 28px; }
+  .s-hero .vizwrap { margin-top: 32px; }
+  .s-how .pin { height: auto; padding: 0; }
+  .s-how .sticky { position: static; height: auto; margin: 0 16px; }
+  .s-how .panel { height: auto; padding: 32px 20px; border-radius: 16px; }
+  .s-how .intro { position: static; transform: none; width: auto; }
+  .s-how .intro h2 { font-size: 44px; }
+  .s-how .cta { height: 60px; margin-top: 28px; font-size: 17px; padding: 0 22px; gap: 8px; border-radius: 16px; }
+  .s-how .stage { position: static; display: grid; gap: 16px; margin-top: 32px; }
+  .s-how .card { position: relative; width: auto; height: 340px; transform: none !important; border-radius: 16px; }
+  .s-how .card h3 { font-size: 20px; }
+  .s-how .card p { font-size: 16px; margin-top: 12px; }
+  .s-how .card .t { left: 24px; top: 24px; width: auto; right: 24px; }
+  .s-rev { padding: 0; }
+  .s-rev .rv { height: auto; min-height: 0; overflow: visible; padding: 0; }
+  .s-rev .scaler { position: static; width: auto; height: auto; transform: none !important; }
+  .s-rev .title { position: static; font-size: 36px; padding: 0 16px 24px; text-align: left; }
+  .s-rev .stage { position: static; width: auto; height: auto; display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 16px 24px 76px; }
+  .s-rev .card { position: relative; left: auto; margin: 0; flex: none; transform: none !important; scroll-snap-align: center; width: 280px; height: 400px; opacity: 1 !important; }
+  .s-rev .res { transform: scale(.6); transform-origin: 20% 80%; opacity: 1 !important; }
+  .s-rev .who { transform: scale(.75); transform-origin: left top; opacity: 1 !important; }
+  .s-rev .card:not(.on) .res, .s-rev .card:not(.on) .who { opacity: 1; }
+  .s-apply { padding: 0 16px; }
+  .s-apply .panel { height: auto; padding: 40px 20px; border-radius: 24px; }
+  .s-apply .box, .s-apply .lead { position: relative; left: auto; right: auto; top: auto; transform: none; width: auto; }
+  .s-apply.in .lead { transform: none; }
+  .s-apply .lead { margin-top: 32px; padding: 20px; border-radius: 22px; }
+  .s-apply h2 { font-size: 36px; }
+  .s-apply .l { height: 40px; }
+  .s-apply .sub { font-size: 18px; }
+  .s-apply .c1 { width: 260px; height: 260px; }
+  .s-apply .c2 { width: 480px; height: 480px; }
+  .s-apply .c3 { width: 740px; height: 740px; }
+  .foot { grid-template-columns: 1fr; padding: 48px 16px; }
+  :root { --m: 16px; }
+  .h2, .s-rev .title { font-size: 36px; }
+  .s-over, .s-aud, .s-sol, .s-faq, .s-rev, .s-apply, .s-how { margin-top: 64px; }
+  .sec { padding: 32px var(--m); }
+  .s-aud .cards { grid-template-columns: 1fr; }
+  .s-aud .card { aspect-ratio: auto; min-height: 280px; }
+  .s-faq { padding: 0 var(--m); }
+  .s-faq .qb { font-size: 18px; padding: 20px 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-sol .row, .s-sol .row .dot, .s-sol .cat, .s-sol .cat i, .s-sol .beam { transition: none; }
+  .s-over .blob, .s-sol .blob, .s-aud .card img, .s-sol .track { animation: none; }
+  .s-aud .card { opacity: 1; translate: none; transition: none; }
+  .s-hero .rot b { transition: none; }
+  .s-apply .l > span, .s-apply .sub, .s-apply .lead { transition: none; }
+  .s-rev .card, .s-rev .who, .s-rev .res > * { transition: none !important; }
+}
+.fx { opacity: 0; translate: 0 28px; transition: opacity 1s var(--out), translate 1.2s var(--out); }
+.fx.fx-in { opacity: 1; translate: 0 0; }
+.fx.fx-d1 { transition-delay: .12s; }
+.fx.fx-d2 { transition-delay: .24s; }
+@media (prefers-reduced-motion: reduce) {
+  .fx { opacity: 1; translate: none; transition: none; }
+}
+</style></head><body>
+<main>
+<!-- Хиро -->
+<header class="hdr" id="hdr">
+  <a class="logo" href="#top">Costwise</a>
+  <nav class="menu" aria-label="Разделы"><a href="#overpay">Где переплата</a><a href="#how">Как это работает</a><a href="#faq">Вопросы</a><a href="#solutions">Преимущества</a></nav>
+  <a class="btn-outline" href="#apply">Консультация</a>
+</header>
+<section class="s-hero" id="top">
+  <div class="body">
+    <div class="copy">
+      <h1 aria-label="Платите меньше за банковские услуги">
+        <span class="ln rot" id="h-rot" aria-hidden="true"><b class="cur">Платите меньше</b><b>Не переплачивайте</b><b>Сокращайте расходы</b></span>
+        <span class="ln" aria-hidden="true">за банковские услуги</span>
+      </h1>
+      <p class="lead">Найдём переплаты по вашей выписке и подберём банк с выгодными условиями</p>
+      <div class="actions"><a class="btn-primary" href="#apply">Получить консультацию
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M12.5 6.5 18 12l-5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+    <div class="vizwrap" id="h-wrap" aria-hidden="true">
+      <div class="viz" id="h-viz">
+        <div class="card c1">
+          <h4>Списания за месяц</h4>
+          <div class="r"><i style="background:#FF9E6B"></i><span>Сверх тарифа</span><b>−2 682 ₽</b></div>
+          <div class="r hl"><i style="background:#F5A6E0"></i><span>Эквайринг</span><b>−1 800 ₽</b></div>
+          <div class="r"><i style="background:#A98BFF"></i><span>Допуслуги</span><b>−1 200 ₽</b></div>
+          <div class="hr"></div>
+          <div class="tt"><span>Итого за месяц</span><b>−5 682 ₽</b></div>
+        </div>
+        <div class="card c2">
+          <div class="lb">Сравнение банков</div>
+          <div class="hd"><span>Условия</span><em>Анализ</em></div>
+          <div class="hr"></div>
+          <div class="br"><div>Счёт<small>Обслуживание</small></div><em>Сверяем</em></div>
+          <div class="br"><div>Эквайринг<small>Приём карт</small></div><em>Сравниваем</em></div>
+          <div class="br"><div>Допуслуги<small>Сервисы банка</small></div><em>Проверяем</em></div>
+        </div>
+        <div class="card c3">
+          <div class="lb">Оптимальный вариант</div>
+          <div class="cmp">
+            <div class="old"><small>Сейчас</small><b>5 682 ₽</b></div>
+            <span class="ar"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10h13M11 5l5 5-5 5" stroke="#9AA5B1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="new"><small>Оптимально</small><b>3 900 ₽</b></div>
+          </div>
+          <div class="sep"></div>
+          <span class="pill">Экономия 1 782 ₽/мес</span>
+        </div>
+        <svg class="links" id="h-links" viewBox="0 0 600 620" aria-hidden="true"></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Где вы переплачиваете -->
+<section class="sec s-over" id="overpay">
+  <h2 class="h2">Где вы переплачиваете</h2>
+  <div class="wrap">
+    <div class="panel">
+      <div class="glass">
+        <div class="views">
+          <div class="view" id="o-view0">
+            <div class="rate"><div class="track2"><div class="base" id="o-b0"></div><div class="vat" id="o-v0"></div></div></div>
+            <div class="legend"><div class="lg"><span><i class="k a"></i>Договор 1,8%</span><span><i class="k c"></i>НДС 22%</span></div><span class="fact">Фактически <b id="o-n0">0,0%</b></span></div>
+            <div class="diff"><div class="lbl">Разница в месяц при обороте 300 000 ₽</div><div class="big" id="o-t0">0 ₽</div></div>
+          </div>
+          <div class="view" id="o-view1">
+            <div class="rate"><div class="segs" id="o-segs1"></div></div>
+            <div class="legend"><div class="lg"><span><i class="k p"></i>В пакете 3</span><span><i class="k a"></i>Сверх тарифа <b id="o-n1">0</b></span></div><span class="fact">Всего 21</span></div>
+            <div class="diff"><div class="lbl">Сверх тарифа: 18 × 149 ₽</div><div class="big" id="o-t1">0 ₽</div></div>
+          </div>
+          <div class="view" id="o-view2">
+            <div class="stm" id="o-stm2"></div>
+            <div class="tail" id="o-tail2"></div>
+            <div class="diff"><div class="lbl">Пакет уведомлений за год, 12 × 99 ₽</div><div class="big" id="o-t2">0 ₽</div></div>
+          </div>
+          <div class="view" id="o-view3">
+            <div class="clauses" id="o-cl3"></div>
+            <div class="diff"><div class="lbl">Платно сверх тарифа</div><div class="big"><span id="o-t3">0</span> из 3</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tabs" id="o-tabs" role="tablist"></div>
+  </div>
+</section>
+
+<!-- Кому подойдёт -->
+<section class="sec s-aud" id="audience">
+  <div class="copy">
+    <h2 class="h2">Кому подойдёт</h2>
+    <p class="lead">Узнали себя хотя бы в одной ситуации? Разберём ваши списания по выписке за три месяца</p>
+  </div>
+  <div class="cards">
+    <article class="card"><h3>Принимаете оплату картами</h3><img src="img/audience/card.webp" alt="" width="626" height="434"></article>
+    <article class="card"><h3>Много платежей контрагентам</h3><img src="img/audience/arrows.webp" alt="" width="626" height="434"></article>
+    <article class="card"><h3>Тариф выбирали давно</h3><img src="img/audience/calendar.webp" alt="" width="626" height="434"></article>
+    <article class="card"><h3>Нет времени разбираться</h3><img src="img/audience/hourglass.webp" alt="" width="626" height="434"></article>
+  </div>
+</section>
+
+<!-- Решения и преимущества -->
+<section class="sec s-sol" id="solutions">
+  <div class="hd">
+    <h2>Решения и преимущества</h2>
+    <p>Разберём текущие условия и подберём банк под ваш бизнес</p>
+  </div>
+  <div class="bg">
+    <div class="frame" id="s-frame">
+      <div class="tile" id="s-tile">
+        <div class="head">
+          <h3>Считаем по вашим списаниям</h3>
+          <p>Анализируем выписку за три месяца и показываем, за что вы платите банку</p>
+        </div>
+        <div class="scene" role="img" aria-label="Пример выписки: найдены три вида лишних списаний, итого 5 682 рубля в месяц">
+          <div class="stm" id="s-stm">
+            <div class="stm-h"><span>Выписка</span><span>октябрь</span></div>
+            <div class="rows" id="s-rows"></div>
+            <div class="beam" id="s-beam"><div class="trail"></div><div class="core"></div></div>
+          </div>
+          <svg class="links" id="s-links" viewBox="0 0 813 457" aria-hidden="true"></svg>
+          <div class="res" id="s-res">
+            <h4>Списания за месяц</h4>
+            <div class="cat" data-k="pay" style="--c:#FF9E6B"><i></i><span class="n">Платежи сверх тарифа</span><b>0&nbsp;₽</b></div>
+            <div class="cat" data-k="acq" style="--c:#F5A6E0"><i></i><span class="n">Эквайринг</span><b>0&nbsp;₽</b></div>
+            <div class="cat" data-k="ext" style="--c:#A98BFF"><i></i><span class="n">Допуслуги</span><b>0&nbsp;₽</b></div>
+            <div class="sum"><span>Итого</span><b id="s-total">0&nbsp;₽</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mkt">
+      <h3>Сравниваем весь рынок</h3>
+      <p>Подбираем условия, наиболее подходящие под ваши обороты</p>
+      <div class="belt" role="img" aria-label="Банки, условия которых мы сравниваем"><div class="track" id="s-track"></div></div>
+      <a class="btn-primary" href="#apply">Смотреть предложения
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M12.5 6.5 18 12l-5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- Как это работает -->
+<section class="s-how" id="how">
+  <div class="pin" id="w-pin">
+    <div class="sticky">
+      <div class="panel" id="w-panel">
+        <div class="intro">
+          <h2>Как это работает</h2>
+          <a class="btn-primary cta" href="#apply">Получить консультацию
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M12.5 6.5 18 12l-5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="stage" id="w-stage">
+          <article class="card"><div class="t"><h3>Заявка</h3><p>Оставляете заявку и называете банк, где обслуживаетесь.</p></div><img src="img/how/chat.webp" alt="" width="626" height="358"></article>
+          <article class="card"><div class="t"><h3>Анализ</h3><p>Присылаете выписку и договор, мы считаем фактические списания.</p></div><img src="img/how/doc.webp" alt="" width="626" height="358"></article>
+          <article class="card"><div class="t"><h3>Подбор банка</h3><p>Получаете расчёт в рублях и два-три банка под ваши обороты.</p></div><img src="img/how/bars.webp" alt="" width="626" height="358"></article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Отзывы -->
+<section class="s-rev" id="reviews">
+  <div class="rv" id="r-rv" aria-roledescription="carousel" aria-label="Отзывы клиентов">
+    <div class="scaler" id="r-scaler">
+      <h2 class="title">Что говорят клиенты</h2>
+      <div class="stage" id="r-stage"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Вопросы -->
+<section class="sec s-faq" id="faq">
+  <div class="cols">
+    <h2 class="h2">Частые вопросы</h2>
+    <div class="list" id="f-list">
+      <div class="q open"><button class="qb" type="button" aria-expanded="true"><span>Сколько стоит консультация?</span><i class="ico"></i></button><div class="ans"><div><p>Консультация бесплатная</p></div></div></div>
+      <div class="q"><button class="qb" type="button" aria-expanded="false"><span>Что нужно прислать?</span><i class="ico"></i></button><div class="ans"><div><p>Выписку по расчётному счёту за три месяца и договор с банком. Если договора под рукой нет, достаточно назвать банк и тариф.</p></div></div></div>
+      <div class="q"><button class="qb" type="button" aria-expanded="false"><span>Что будет с реквизитами, если я перейду в другой банк?</span><i class="ico"></i></button><div class="ans"><div><p>Новые реквизиты появятся после открытия счёта в другом банке. Контрагентам их нужно сообщить, поэтому старый счёт обычно не закрывают сразу.</p></div></div></div>
+      <div class="q"><button class="qb" type="button" aria-expanded="false"><span>Что вы делаете с моим номером телефона?</span><i class="ico"></i></button><div class="ans"><div><p>Звоним только по вашей заявке, чтобы уточнить банк и договориться о выписке. Подробности в политике конфиденциальности.</p></div></div></div>
+      <div class="q"><button class="qb" type="button" aria-expanded="false"><span>Что, если выгоднее остаться в своём банке?</span><i class="ico"></i></button><div class="ans"><div><p>Скажем об этом прямо и покажем расчёт. Вы сами решаете, переходить или остаться.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Заявка -->
+<section class="s-apply" id="apply">
+  <div class="panel">
+    <i class="circle c3"></i><i class="circle c2"></i><i class="circle c1"></i>
+    <div class="box">
+      <h2 aria-label="Узнайте, сколько вы переплачиваете">
+        <span class="l" aria-hidden="true"><span>Узнайте, сколько</span></span>
+        <span class="l" aria-hidden="true"><span>вы переплачиваете</span></span>
+      </h2>
+      <p class="sub">Оставьте заявку, мы уточним банк и попросим выписку за три месяца</p>
+    </div>
+    <form class="lead" id="a-form" novalidate>
+      <input class="f" name="name" placeholder="Имя" autocomplete="name" aria-label="Имя">
+      <input class="f" name="phone" placeholder="Телефон" autocomplete="tel" inputmode="tel" aria-label="Телефон">
+      <input class="f" name="bank" placeholder="Банк, где обслуживаетесь" aria-label="Банк, где обслуживаетесь">
+      <button class="btn" type="submit"><span class="bg"></span>
+        <span class="txt"><span class="st">Получить консультацию</span><span class="up" aria-hidden="true">Получить консультацию</span></span>
+        <span class="arr"><svg class="a1" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12.5 6.5 18 12l-5.5 5.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="a2" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12.5 6.5 18 12l-5.5 5.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <p class="agree">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+      <div class="ok"><b>Заявка отправлена</b><span>Мы свяжемся с вами и уточним банк. Выписку за три месяца попросим после звонка.</span></div>
+    </form>
+  </div>
+</section>
+
+<!-- Футер -->
+<footer class="foot">
+  <div><div class="brand">Costwise</div><p class="legal">ООО «Costwise», ИНН 998347623</p></div>
+  <div><h4>Контакты</h4><ul><li><a href="tel:+74950000000">+7 495 000-00-00</a></li><li><a href="mailto:hello@costwise.example">hello@costwise.example</a></li></ul></div>
+  <div><h4>Информация</h4><ul><li><a href="#">Политика конфиденциальности</a></li><li><a href="#">Как мы зарабатываем</a></li></ul>
+    <div class="soc">
+      <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24"><path class="fill" d="M20.7 4.1 3.5 10.7c-.9.4-.9 1.2-.2 1.4l4.4 1.4 1.7 5.2c.2.5.9.7 1.3.3l2.4-2.3 4.4 3.3c.6.4 1.4.1 1.6-.7l2.9-14.7c.2-.9-.6-1.5-1.3-1.2z"/><path class="cut" d="m8.6 13.4 8.2-5.2"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4.5"/><path d="M8 11v5M8 8v.01M12 16v-5m0 2.2c0-1.3 1-2.2 2.4-2.2S17 11.9 17 13.2V16"/></svg></a>
+    </div>
+  </div>
+</footer>
+</main>
+<script>
+var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+var NB = " ";
+var G = function (id) { return document.getElementById(id); };
+var ready = function (fn) { if (document.fonts && document.fonts.ready) document.fonts.ready.then(fn); else fn(); };
+/* кнопки: прокрутка текста и выезд стрелки при наведении */
+Array.prototype.forEach.call(document.querySelectorAll(".btn-primary"), function (b) {
+  var svg = b.querySelector("svg"), t = b.textContent.replace(/\s+/g, " ").trim();
+  b.setAttribute("aria-label", t);
+  b.innerHTML = '<span class="txt" aria-hidden="true"><span class="st">' + t + '</span><span class="up">' + t + '</span></span>' + (svg ? '<span class="arr" aria-hidden="true">' + svg.outerHTML.replace("<svg", '<svg class="a1"') + svg.outerHTML.replace("<svg", '<svg class="a2"') + '</span>' : "");
+});
+var vis = {};
+(function () {
+  var map = [["hero", ".s-hero"], ["over", ".s-over"], ["aud", ".s-aud"], ["sol", ".s-sol"]];
+  map.forEach(function (m) { var el = document.querySelector(m[1]); vis[m[0]] = true; if (!("IntersectionObserver" in window)) { el.classList.add("act"); return; }
+    new IntersectionObserver(function (es) { vis[m[0]] = es[0].isIntersecting; el.classList.toggle("act", es[0].isIntersecting); }, { rootMargin: "120px 0px" }).observe(el); });
+})();
+var ease3 = function (u) { return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; };
+
+/* ---------- хиро: первая строка меняется, две стрелки рисуются, по ним идёт пульс ---------- */
+(function () {
+  var NS = "http://www.w3.org/2000/svg", viz = G("h-viz"), wrap = G("h-wrap"), links = G("h-links");
+  var mobile = function () { return window.innerWidth <= 900; };
+  var S = 1;
+  function fit() {
+    var s;
+    if (mobile()) s = Math.min(1, (window.innerWidth - 32) / 600);
+    else s = Math.max(.6, Math.min(1, (window.innerWidth - 128 - 764 + 52) / 600));
+    S = s; viz.style.transform = "scale(" + s + ")"; wrap.style.height = (620 * s) + "px";
+  }
+  (function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll("#h-rot b")), c = 0;
+    if (reduce) return;
+    setInterval(function () { var nx = (c + 1) % items.length, a = items[c], b = items[nx]; a.classList.remove("cur"); a.classList.add("out"); b.classList.add("cur"); setTimeout(function () { a.classList.add("snap"); a.classList.remove("out"); void a.offsetWidth; a.classList.remove("snap"); }, 950); c = nx; }, 3200);
+  })();
+  var A = [{ d: "M258 238 H282 Q292 238 292 228 V154 Q292 144 302 144", head: "M296 138 L303 144 L296 150" }, { d: "M404 232 V362", head: "M398 355 L404 362 L410 355" }];
+  var defs = document.createElementNS(NS, "defs"); links.appendChild(defs);
+  var P = A.map(function (a, i) {
+    var m = document.createElementNS(NS, "mask"); m.setAttribute("id", "hm" + i); m.setAttribute("maskUnits", "userSpaceOnUse"); m.setAttribute("x", 0); m.setAttribute("y", 0); m.setAttribute("width", 600); m.setAttribute("height", 620); m.style.maskType = "alpha";
+    var mp = document.createElementNS(NS, "path"); mp.setAttribute("d", a.d); mp.setAttribute("stroke", "#000"); mp.setAttribute("stroke-width", 2.2); mp.setAttribute("fill", "none"); m.appendChild(mp); defs.appendChild(m);
+    var line = document.createElementNS(NS, "path"); line.setAttribute("d", a.d); line.setAttribute("class", "arr"); links.appendChild(line);
+    var head = document.createElementNS(NS, "path"); head.setAttribute("d", a.head); head.setAttribute("class", "arr tip"); links.appendChild(head);
+    var g = document.createElementNS(NS, "g"); g.setAttribute("mask", "url(#hm" + i + ")"); var c = document.createElementNS(NS, "circle"); c.setAttribute("r", 20); c.setAttribute("fill", "#8148F7"); c.setAttribute("cx", -100); c.setAttribute("cy", -100); g.appendChild(c); links.appendChild(g);
+    return { line: line, head: head, c: c, L: 0 };
+  });
+  function start() {
+    fit();
+    P.forEach(function (p, i) {
+      p.L = p.line.getTotalLength(); p.line.classList.add("dash"); if (reduce) p.line.classList.add("show");
+      if (reduce) { p.head.classList.add("show"); return; }
+      setTimeout(function () { p.line.classList.add("show"); }, 500 + i * 700);
+      setTimeout(function () { p.head.classList.add("show"); }, 1500 + i * 700);
+    });
+    if (reduce) return;
+    var t0 = performance.now() + 3000, CYC = 5600, RUN = 1500, STEP = 2200;
+    (function f(now) {
+      if (!vis.hero) { requestAnimationFrame(f); return; }
+      var t = now - t0;
+      P.forEach(function (p, i) {
+        var ph = ((t - i * STEP) % CYC + CYC) % CYC;
+        if (t > 0 && ph < RUN) { var u = ease3(ph / RUN), pos = -20 + u * (p.L + 40), pt = p.line.getPointAtLength(Math.max(0, Math.min(p.L, pos))); p.c.setAttribute("cx", pt.x); p.c.setAttribute("cy", pt.y); }
+        else p.c.setAttribute("cx", -100);
+      });
+      requestAnimationFrame(f);
+    })(performance.now());
+  }
+  window.addEventListener("resize", fit);
+  ready(start);
+})();
+
+/* ---------- где переплачиваете: вкладки и панель с примерами ---------- */
+(function () {
+  var money = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, NB) + NB + "₽"; };
+  var pct = function (n) { return n.toFixed(1).replace(".", ",") + "%"; };
+  var ICON = {
+    acq: '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
+    acc: '<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
+    ext: '<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
+    con: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/>'
+  };
+  var TABS = [
+    { id: "acq", name: "Приём карт", text: "С 1 января 2026 на комиссию начисляется НДС 22%, а ставки у банков от 0,5% до 3–4%. Сверим вашу ставку с рынком." },
+    { id: "acc", name: "Расчётный счёт", text: "Часто в тариф входят только первые платежи в месяц, например три. Остальные, вывод на карту и зачисление считаются отдельно." },
+    { id: "ext", name: "Допуслуги", text: "Уведомления и пакеты подключаются отдельно и списываются каждый месяц. В выписке они выглядят как обычные списания." },
+    { id: "con", name: "Договор", text: "Зачисление, вывод, лимиты, НДС на комиссии: читаем договор построчно и сверяем с выпиской." }
+  ];
+  var tabsEl = G("o-tabs");
+  var tabEls = TABS.map(function (t, i) {
+    var b = document.createElement("button"); b.type = "button"; b.className = "tab"; b.setAttribute("role", "tab");
+    b.innerHTML = '<span class="tab-head"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICON[t.id] + '</svg><span>' + t.name + '</span></span><span class="more"><div><p>' + t.text + '</p></div></span>';
+    b.addEventListener("click", function () { go(i); });
+    tabsEl.appendChild(b); return b;
+  });
+  var raf = {};
+  function countTo(id, from, to, fmt, ms) {
+    var node = G(id), t0 = performance.now(); cancelAnimationFrame(raf[id]);
+    if (reduce) { node.textContent = fmt(to); return; }
+    (function f(now) { var u = Math.min(1, (now - t0) / ms); node.textContent = fmt(from + (to - from) * ease3(u)); if (u < 1) raf[id] = requestAnimationFrame(f); })(t0);
+  }
+  var timers = [];
+  var later = function (fn, ms) { timers.push(setTimeout(fn, reduce ? 0 : ms)); };
+  var segs1 = G("o-segs1"), stm2 = G("o-stm2"), cl3 = G("o-cl3");
+  for (var c = 0; c < 21; c++) { var e = document.createElement("i"); if (c < 3) e.className = "p"; segs1.appendChild(e); }
+  [["05.01", "Пакет уведомлений", "−99", 1], ["12.01", "Оплата поставщику", "−18 400", 0], ["05.02", "Пакет уведомлений", "−99", 1]].forEach(function (r) {
+    var e = document.createElement("div"); e.className = "sr" + (r[3] ? " pk" : ""); e.innerHTML = "<span>" + r[0] + "</span><span>" + r[1] + "</span><b>" + r[2].replace(/ /g, NB) + NB + "₽</b>"; stm2.appendChild(e);
+  });
+  [["Зачисление выручки", 0], ["Вывод на карту", 1], ["НДС на комиссии", 1]].forEach(function (r) {
+    var e = document.createElement("div"); e.className = "cl" + (r[1] ? " flag" : ""); e.innerHTML = '<span class="nm">' + r[0] + '</span><span class="st ' + (r[1] ? "bad" : "ok") + '">' + (r[1] ? "платно сверху" : "входит в тариф") + "</span>"; cl3.appendChild(e);
+  });
+  var sr = Array.prototype.slice.call(stm2.children), cls = Array.prototype.slice.call(cl3.children);
+  function reset() {
+    timers.forEach(clearTimeout); timers = [];
+    G("o-b0").style.width = "0"; G("o-v0").style.width = "0"; G("o-view0").classList.remove("run");
+    G("o-n0").textContent = "0,0%"; G("o-t0").textContent = "0" + NB + "₽";
+    Array.prototype.forEach.call(segs1.children, function (e) { e.classList.remove("on"); });
+    G("o-n1").textContent = "0"; G("o-t1").textContent = "0" + NB + "₽";
+    sr.forEach(function (e) { e.classList.remove("show", "hl"); }); G("o-tail2").classList.remove("show"); G("o-t2").textContent = "0" + NB + "₽";
+    cls.forEach(function (e) { e.classList.remove("scan", "done"); }); G("o-t3").textContent = "0";
+  }
+  var RUN = [
+    function () {
+      G("o-view0").classList.add("run");
+      later(function () { G("o-b0").style.width = "77%"; }, 150);
+      later(function () { G("o-v0").style.width = "17.1%"; }, 1250);
+      later(function () { countTo("o-n0", 1.8, 2.2, pct, 900); }, 1300);
+      later(function () { countTo("o-t0", 0, 1800, money, 1400); }, 1900);
+    },
+    function () {
+      var tiles = segs1.children;
+      for (var k = 3; k < 21; k++) (function (k) { later(function () { tiles[k].classList.add("on"); var n = k - 2; G("o-n1").textContent = String(n); G("o-t1").textContent = money(n * 149); }, 200 + (k - 3) * 85); })(k);
+    },
+    function () {
+      sr.forEach(function (e, i) { later(function () { e.classList.add("show"); if (e.classList.contains("pk")) later(function () { e.classList.add("hl"); }, 350); }, 150 + i * 300); });
+      later(function () { G("o-tail2").classList.add("show"); }, 2100);
+      later(function () { countTo("o-t2", 0, 1188, money, 1500); }, 2300);
+    },
+    function () {
+      var flagged = 0;
+      cls.forEach(function (e, i) {
+        later(function () { e.classList.add("scan"); }, 200 + i * 650);
+        later(function () { e.classList.remove("scan"); e.classList.add("done"); if (e.classList.contains("flag")) { flagged++; G("o-t3").textContent = String(flagged); } }, 200 + i * 650 + 520);
+      });
+    }
+  ];
+  var views = [G("o-view0"), G("o-view1"), G("o-view2"), G("o-view3")], active = -1;
+  var auto = !reduce, inView = true;
+  function go(i) {
+    if (i === active) { if (auto) { tabEls[i].classList.remove("on"); void tabEls[i].offsetWidth; tabEls[i].classList.add("on"); } return; }
+    active = i;
+    tabEls.forEach(function (b, k) { b.classList.toggle("on", k === i); b.setAttribute("aria-selected", k === i); });
+    views.forEach(function (v, k) { v.classList.toggle("on", k === i); });
+    reset(); RUN[i]();
+  }
+  /* линия растёт по активной вкладке, в конце включается следующая и её визуал */
+  tabEls.forEach(function (b, i) { b.addEventListener("animationend", function (e) { if (e.animationName === "o-fill" && auto) go((i + 1) % TABS.length); }); });
+  tabsEl.addEventListener("pointerenter", function () { tabsEl.classList.add("paused"); });
+  tabsEl.addEventListener("pointerleave", function () { tabsEl.classList.remove("paused"); });
+  go(0);
+  /* запускаем, когда блок виден: первая вкладка начинает с нуля, вне экрана линия стоит */
+  if ("IntersectionObserver" in window && !reduce) {
+    var seen = false;
+    new IntersectionObserver(function (es) {
+      var v = es[0].isIntersecting; tabsEl.classList.toggle("live", v);
+      if (v && !seen) { seen = true; var i = active; active = -1; go(i < 0 ? 0 : i); }
+    }, { threshold: .45 }).observe(tabsEl);
+  } else tabsEl.classList.add("live");
+})();
+
+/* ---------- кому подойдёт: карточки выходят по очереди вместе со скроллом ---------- */
+(function () {
+  var wrap = document.querySelector(".s-aud .cards"), cards = Array.prototype.slice.call(wrap.querySelectorAll(".card")), N = cards.length;
+  var cur = 0, tgt = 0, last = 0;
+  function show(t) { cards.forEach(function (c, i) { var u = Math.max(0, Math.min(1, t * (1 + .55 * (N - 1)) - .55 * i)), e = 1 - Math.pow(1 - u, 3); c.style.setProperty("--o", e.toFixed(3)); c.style.setProperty("--y", ((1 - e) * 48).toFixed(1)); }); }
+  if (reduce) { cards.forEach(function (c) { c.style.setProperty("--o", 1); c.style.setProperty("--y", 0); }); return; }
+  function target() { var r = wrap.getBoundingClientRect(), vh = window.innerHeight; return Math.max(0, Math.min(1, (vh - r.top) / (vh * .62 + r.height * .35))); }
+  function tick(now) { var dt = last ? Math.min(.05, (now - last) / 1000) : .016; last = now; tgt = target(); cur += (tgt - cur) * (1 - Math.exp(-dt * 7)); if (Math.abs(tgt - cur) < .0005) cur = tgt; show(cur); requestAnimationFrame(tick); }
+  show(0); requestAnimationFrame(tick);
+})();
+
+/* ---------- решения: сканер выписки и лента банков ---------- */
+(function () {
+  var W = 813, H = 457, MINUS = "−", NS = "http://www.w3.org/2000/svg";
+  var ROWS = [
+    { d: "03.10", n: "Оплата покупателя", a: "+12 400", k: "" }, { d: "03.10", n: "Комиссия эквайринга", a: "−148", k: "acq" },
+    { d: "04.10", n: "Перевод, сверх тарифа", a: "−149", k: "pay" }, { d: "05.10", n: "Оплата аренды", a: "−30 000", k: "" },
+    { d: "05.10", n: "Пакет уведомлений", a: "−99", k: "ext" }
+  ];
+  var FINAL = { pay: 2682, acq: 1800, ext: 1200 }, CVAR = { pay: "#FF9E6B", acq: "#F5A6E0", ext: "#A98BFF" };
+  var fmt = function (v) { return MINUS + String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, NB) + NB + "₽"; }, zero = "0" + NB + "₽";
+  var frame = G("s-frame"), tile = G("s-tile"), rowsEl = G("s-rows"), stm = G("s-stm"), res = G("s-res"), beam = G("s-beam"), links = G("s-links"), totalEl = G("s-total");
+  var cats = {};
+  Array.prototype.forEach.call(tile.querySelectorAll(".cat"), function (c) { cats[c.dataset.k] = { el: c, b: c.querySelector("b"), shown: 0 }; });
+  var count = {}; ROWS.forEach(function (r) { if (r.k) count[r.k] = (count[r.k] || 0) + 1; });
+  var rowEls = ROWS.map(function (r) {
+    var el = document.createElement("div"); el.className = "row"; if (r.k) el.style.setProperty("--c", CVAR[r.k]);
+    el.innerHTML = '<span class="dot"></span><span class="d">' + r.d + '</span><span class="n">' + r.n + '</span><span class="a">' + r.a.replace(/ /g, NB) + NB + "₽</span>";
+    rowsEl.appendChild(el); return el;
+  });
+  var conns = [], link = null;
+  function build() {
+    links.innerHTML = ""; conns = [];
+    ROWS.forEach(function (r, i) { if (r.k) conns.push({ i: i, k: r.k, on: false }); });
+    var ax = stm.offsetLeft + stm.offsetWidth, ay = 272;
+    var bx = res.offsetLeft, by = 272, mx = (ax + bx) / 2, dir = by > ay ? 1 : -1, r = Math.max(2, Math.min(16, Math.abs(by - ay) / 2 - 1));
+    var d = Math.abs(by - ay) < 2 ? "M" + ax + " " + ay + " H" + (bx - 4) : "M" + ax + " " + ay + " H" + (mx - r) + " Q" + mx + " " + ay + " " + mx + " " + (ay + dir * r) + " V" + (by - dir * r) + " Q" + mx + " " + by + " " + (mx + r) + " " + by + " H" + (bx - 4);
+    var mkp = function (parent, attrs) { var p = document.createElementNS(NS, "path"); p.setAttribute("d", d); for (var k in attrs) p.setAttribute(k, attrs[k]); parent.appendChild(p); return p; };
+    var mask = document.createElementNS(NS, "mask"); mask.setAttribute("id", "lm"); mask.setAttribute("maskUnits", "userSpaceOnUse"); mask.setAttribute("x", 0); mask.setAttribute("y", 0); mask.setAttribute("width", W); mask.setAttribute("height", H); mask.style.maskType = "alpha";
+    links.appendChild(mask);
+    mkp(mask, { stroke: "#000", "stroke-width": 1.8, "stroke-linecap": "butt" });
+    mkp(links, { stroke: "#C9B5F0", "stroke-width": 1.5, "stroke-dasharray": "5 4" });
+    var ptsPath = mkp(links, { stroke: "none" });
+    var arrow = document.createElementNS(NS, "path"); arrow.setAttribute("d", "M" + (bx - 12) + " " + (by - 6) + " L" + (bx - 4) + " " + by + " L" + (bx - 12) + " " + (by + 6)); arrow.setAttribute("stroke", "#C9B5F0"); arrow.setAttribute("stroke-width", 1.8); arrow.setAttribute("stroke-linecap", "round"); arrow.setAttribute("stroke-linejoin", "round"); links.appendChild(arrow);
+    var g = document.createElementNS(NS, "g"); g.setAttribute("mask", "url(#lm)");
+    var pulse = document.createElementNS(NS, "circle"); pulse.setAttribute("r", 24); pulse.setAttribute("fill", "#8148F7"); pulse.setAttribute("cx", -100); pulse.setAttribute("cy", -100); g.appendChild(pulse); links.appendChild(g);
+    link = { pulse: pulse, pts: ptsPath, len: ptsPath.getTotalLength(), ax: ax, ay: ay, bx: bx - 4, by: by };
+  }
+  var T_DOWN0 = 0.6, T_DOWN1 = 4.6, T_UP0 = 7.0, T_UP1 = 8.8, T_END = 9.8;
+  var sine = function (u) { return 0.5 - Math.cos(Math.PI * u) / 2; };
+  function beamP(t) { if (t < T_DOWN0) return 0; if (t < T_DOWN1) return sine((t - T_DOWN0) / (T_DOWN1 - T_DOWN0)); if (t < T_UP0) return 1; if (t < T_UP1) return 1 - sine((t - T_UP0) / (T_UP1 - T_UP0)); return 0; }
+  var lastT = 0;
+  function frameAt(t) {
+    var dt = t >= lastT ? t - lastT : 0; lastT = t;
+    var Hh = rowsEl.offsetHeight, p = beamP(t);
+    var showBeam = (t >= T_DOWN0 - 0.2 && t < T_DOWN1 + 0.25) || (t >= T_UP0 - 0.2 && t < T_UP1 + 0.25);
+    beam.classList.toggle("on", showBeam); beam.classList.toggle("up", t >= T_UP0 - 0.05);
+    beam.style.top = (rowsEl.offsetTop + p * Hh) + "px";
+    var py = p * Hh;
+    conns.forEach(function (c) {
+      var mid = rowEls[c.i].offsetTop + rowEls[c.i].offsetHeight / 2, down = t < T_UP0;
+      if (down && t >= T_DOWN0 && py >= mid && !c.on) { c.on = true; rowEls[c.i].classList.add("hit"); (function (k) { setTimeout(function () { var el = cats[k].el; el.classList.add("pulse"); setTimeout(function () { el.classList.remove("pulse"); }, 450); }, 700); })(c.k); }
+      if (!down && py <= mid && c.on) { c.on = false; rowEls[c.i].classList.remove("hit"); }
+    });
+    var active = { pay: 0, acq: 0, ext: 0 };
+    conns.forEach(function (c) { if (c.on) active[c.k]++; });
+    var CYC = 2.6, RUN = 1.7, ph = t % CYC;
+    if (ph < RUN) {
+      var u = sine(ph / RUN), pos = -24 + u * (link.len + 48), x, y;
+      if (pos < 0) { x = link.ax + pos; y = link.ay; } else if (pos > link.len) { x = link.bx + (pos - link.len); y = link.by; } else { var pt = link.pts.getPointAtLength(pos); x = pt.x; y = pt.y; }
+      link.pulse.setAttribute("cx", x); link.pulse.setAttribute("cy", y);
+    } else link.pulse.setAttribute("cx", -100);
+    var sum = 0, k = 1 - Math.exp(-dt * 6);
+    Object.keys(cats).forEach(function (key) {
+      var c = cats[key], target = FINAL[key] * active[key] / count[key];
+      c.shown += (target - c.shown) * k; if (Math.abs(target - c.shown) < 8) c.shown = target;
+      var txt = c.shown > 0.5 ? fmt(c.shown) : zero; if (txt !== c.txt) { c.txt = txt; c.b.textContent = txt; } c.el.classList.toggle("on", active[key] > 0); sum += c.shown;
+    });
+    var tt = sum > 0.5 ? fmt(sum) : zero; if (tt !== totalEl._t) { totalEl._t = tt; totalEl.textContent = tt; }
+  }
+  function showFinal() {
+    conns.forEach(function (c) { rowEls[c.i].classList.add("hit"); });
+    Object.keys(cats).forEach(function (k) { cats[k].b.innerHTML = fmt(FINAL[k]); cats[k].el.classList.add("on"); });
+    totalEl.innerHTML = fmt(FINAL.pay + FINAL.acq + FINAL.ext);
+  }
+  /* плитка рисуется в размере макета 813×457 и масштабируется под ширину колонки */
+  function fit() { var w = frame.parentNode.querySelector(".frame").clientWidth || W, s = w / W; frame.style.height = (H * s) + "px"; tile.style.transform = "scale(" + s + ")"; }
+  var last = 0, clock = 0, hover = false, visible = true;
+  tile.addEventListener("pointerenter", function () { hover = true; }); tile.addEventListener("pointerleave", function () { hover = false; });
+  function loop(now) {
+    var dt = last ? Math.min(.05, (now - last) / 1000) : 0; last = now;
+    if (!hover && visible && !document.hidden) clock += dt;
+    if (clock >= T_END) { clock = 0; lastT = 0; }
+    if (vis.sol) frameAt(clock);
+    requestAnimationFrame(loop);
+  }
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: .2 }).observe(tile);
+  window.addEventListener("resize", fit);
+  ready(function () { fit(); build(); if (reduce) showFinal(); else requestAnimationFrame(loop); });
+
+  var track = G("s-track");
+  var BK = []; for (var q = 0; q < 11; q++) BK.push("b" + q);
+  for (var h = 0; h < 2; h++) BK.forEach(function (b) {
+    var i = new Image(); i.className = "logo"; i.src = "img/banks/" + b + ".webp"; i.alt = ""; i.width = 56; i.height = 56; i.draggable = false; track.appendChild(i);
+  });
+})();
+
+/* ---------- как это работает: прокрутка раскладывает карточки веером ---------- */
+(function () {
+  var root = document.querySelector(".s-how"), pin = G("w-pin"), panel = G("w-panel");
+  var cards = Array.prototype.slice.call(G("w-stage").querySelectorAll(".card"));
+  var imgs = cards.map(function (c) { return c.querySelector("img"); });
+  var mobile = function () { return window.innerWidth <= 900; };
+  var S = [
+    { x0: 770, s0: 1.0, r0: 0, x1: 672, y1: 9, s1: 0.8, r1: -10, a: 0, b: 85 },
+    { x0: 1124, s0: 0.9, r0: 10, x1: 828, y1: -14, s1: 0.9, r1: 0, a: 18, b: 118 },
+    { x0: 1446, s0: 0.8, r0: 0, x1: 1016, y1: 15, s1: 1.0, r1: 10, a: 36, b: 150 }
+  ];
+  var lerp = function (a, b, t) { return a + (b - a) * t; }, clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+  var pw = 0, ph = 0, k = 1;
+  function layout() { if (mobile()) { root.style.setProperty("--k", 1); return; } pw = panel.clientWidth; ph = panel.clientHeight; k = pw / 1312; ph = 467 * k; root.style.setProperty("--k", k.toFixed(4)); root.style.setProperty("--ph", ph.toFixed(1) + "px"); }
+  function progress() { var r = pin.getBoundingClientRect(), len = pin.offsetHeight - window.innerHeight; return clamp(-r.top / len, 0, 1); }
+  function draw(P) {
+    if (mobile()) { cards.forEach(function (c) { c.style.transform = ""; c.style.boxShadow = ""; }); return; }
+    var d = clamp((P - 0.02) / 0.8, 0, 1) * 150;
+    cards.forEach(function (c, i) {
+      var p = S[i], t = ease3(clamp((d - p.a) / (p.b - p.a), 0, 1));
+      var x = lerp(p.x0, p.x1, t) / 1312 * pw, y = ph / 2 + lerp(0, p.y1, t) * k, s = lerp(p.s0, p.s1, t), r = lerp(p.r0, p.r1, t), w = 313 * k, h = 339 * k;
+      c.style.transform = "translate3d(" + (x - w / 2).toFixed(1) + "px," + (y - h / 2).toFixed(1) + "px,0) rotate(" + r.toFixed(2) + "deg) scale(" + s.toFixed(3) + ")";
+      imgs[i].style.transform = "translate3d(" + ((P - .5) * -10).toFixed(1) + "px," + ((P - .5) * -10).toFixed(1) + "px,0) rotate(" + ((P - .5) * (i === 1 ? -9 : 8)).toFixed(2) + "deg) scale(" + (0.98 + P * 0.05).toFixed(3) + ")";
+    });
+  }
+  var cur = 0, started = false, last = 0, lastDrawn = -1;
+  function tick(now) {
+    var dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016; last = now;
+    var rr = pin.getBoundingClientRect(); if (rr.bottom < -300 || rr.top > window.innerHeight + 300) { requestAnimationFrame(tick); return; }
+    var raw = progress(); if (!started) { cur = raw; started = true; }
+    cur += (raw - cur) * (1 - Math.exp(-dt * 8)); if (Math.abs(raw - cur) < 0.0002) cur = raw;
+    if (Math.abs(cur - lastDrawn) > .0003 || lastDrawn < 0) { lastDrawn = cur; draw(cur); } requestAnimationFrame(tick);
+  }
+  window.addEventListener("resize", layout); layout();
+  if (reduce) draw(1); else requestAnimationFrame(tick);
+})();
+
+/* ---------- отзывы: карусель ---------- */
+(function () {
+  var ARROWS = '<svg viewBox="0 0 24 24"><path d="M4 8h14"/><path d="m14 4 4 4-4 4"/><path d="M20 16H6"/><path d="m10 12-4 4 4 4"/></svg>';
+  var REV = [
+    { img: "img/reviews/anna.webp", alt: "Анна, владелица кофейни", name: "Анна", org: "Кофейня, ИП", was: "5 682", now: "3 900", save: "1 782", why: "Платежи сверх тарифа" },
+    { img: "img/reviews/mikhail.webp", alt: "Михаил, владелец интернет-магазина", name: "Михаил", org: "Интернет-магазин, ООО", was: "6 600", now: "4 800", save: "1 800", why: "Эквайринг 2,2% вместо 1,6%" },
+    { img: "img/reviews/elena.webp", alt: "Елена, владелица студии маникюра", name: "Елена", org: "Студия маникюра, ИП", was: "3 290", now: "1 400", save: "1 890", why: "Допуслуги и платежи" },
+    { img: "img/reviews/dmitry.webp", alt: "Дмитрий, владелец оптовой торговли", name: "Дмитрий", org: "Оптовая торговля, ООО", was: "8 400", now: "5 900", save: "2 500", why: "Лимиты и вывод средств" },
+    { img: "img/reviews/olga.webp", alt: "Ольга, консультант", name: "Ольга", org: "Консалтинг, ИП", was: "3 200", now: "1 900", save: "1 300", why: "Платежи контрагентам" }
+  ];
+  function sum(x) { return x + NB + "₽"; }
+  var VAR = [
+    function (r) { return '<div class="box now" style="left:-30px;bottom:128px;width:250px"><span class="tag">Сейчас</span><div class="sum">' + sum(r.was) + '</div><div class="note">' + r.why + '</div></div><div class="swap" style="left:128px;bottom:100px">' + ARROWS + '</div><div class="box new" style="left:180px;bottom:12px;width:250px"><span class="tag">В новом банке</span><div class="sum">' + sum(r.now) + '</div><div class="note">Экономия ' + sum(r.save) + ' в' + NB + 'месяц</div></div>'; },
+    function (r) { return '<div class="box" style="right:-48px;bottom:84px;width:236px"><span class="tag">Эквайринг</span><div class="ttl">Ставка</div><div class="rowx" style="padding-top:0"><span>Ваша</span><b>2,2%</b></div><div class="bar"><i style="width:100%;background:#9AA5B1"></i></div><div class="rowx" style="margin-top:8px"><span>Рынок</span><b>1,6%</b></div><div class="bar"><i style="width:73%;background:#5739FF"></i></div></div><div class="pill" style="left:20px;bottom:30px">−' + sum(r.save) + '<small>в месяц на эквайринге</small></div>'; },
+    function (r) { return '<div class="pill" style="left:-24px;bottom:166px">−' + sum(r.save) + '<small>в месяц, допуслуги и платежи</small></div><div class="box" style="right:-44px;bottom:12px;width:246px"><span class="tag" style="background:#EEE8FF;color:#5739FF">Отключено</span><div class="ttl">Допуслуги</div><div class="rowx"><span>Пакет уведомлений<br><small style="color:var(--muted)">99' + NB + '₽ в' + NB + 'месяц</small></span><i class="tg"></i></div><div class="rowx"><span>SMS-информирование<br><small style="color:var(--muted)">149' + NB + '₽ в' + NB + 'месяц</small></span><i class="tg"></i></div></div>'; },
+    function (r) { return '<div class="box" style="left:-50px;bottom:84px;width:236px"><span class="tag">Лимиты и вывод</span><div class="ttl">Расходы в месяц</div><div class="rowx" style="padding-top:0"><span>Было</span><b>' + sum(r.was) + '</b></div><div class="bar"><i style="width:100%;background:#9AA5B1"></i></div><div class="rowx" style="margin-top:8px"><span>Стало</span><b>' + sum(r.now) + '</b></div><div class="bar"><i style="width:70%;background:#5739FF"></i></div></div><div class="pill" style="right:-26px;bottom:30px">−' + sum(r.save) + '<small>экономия в месяц</small></div>'; },
+    function (r) { return '<div class="box" style="right:-44px;bottom:100px;width:240px"><span class="tag">Платежи контрагентам</span><div class="ttl">Платежи за месяц</div><div class="rowx" style="padding-top:0"><span>Платёж 1</span><b>−149' + NB + '₽</b></div><div class="rowx"><span>Платёж 2</span><b>−149' + NB + '₽</b></div><div class="rowx"><span>Платёж 3</span><b>−149' + NB + '₽</b></div></div><div class="box new" style="left:-36px;bottom:12px;width:240px"><span class="tag">В новом банке</span><div class="sum">' + sum(r.now) + '</div><div class="note">Экономия ' + sum(r.save) + ' в' + NB + 'месяц</div></div>'; }
+  ];
+  var stage = G("r-stage"), scaler = G("r-scaler"), rv = G("r-rv");
+  var N = REV.length, idx = 0, prev = [], timer = 0;
+  var mobile = function () { return window.innerWidth < 900; };
+  var cards = REV.map(function (r, i) {
+    var el = document.createElement("article"); el.className = "card"; el.setAttribute("aria-label", r.name + ", " + r.org);
+    el.innerHTML = '<div class="phw"><div class="ph"><img src="' + r.img + '" alt="' + r.alt + '" decoding="sync"></div></div><div class="who"><b>' + r.name + '</b><span>' + r.org + '</span></div><div class="res">' + VAR[i](r) + '</div>';
+    stage.appendChild(el); return el;
+  });
+  cards.forEach(function (c) { var im = c.querySelector("img"); if (im.decode) im.decode().catch(function () {}); });
+  var idxF = 0, dragging = false;
+  function off(i) { var o = (i - idxF) % N; if (o > N / 2) o -= N; if (o < -N / 2) o += N; return o; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  var ST = [[0, 1, 0], [411, .66, 7.4], [700, .44, 0], [900, .44, 0]];
+  function roundPoly(pts, r, n) {
+    var L = pts.length, out = [];
+    for (var i = 0; i < L; i++) {
+      var p = pts[i], a = pts[(i + L - 1) % L], b = pts[(i + 1) % L];
+      var ax = a[0] - p[0], ay = a[1] - p[1], bx = b[0] - p[0], by = b[1] - p[1];
+      var la = Math.hypot(ax, ay), lb = Math.hypot(bx, by), da = Math.min(r, la / 2), db = Math.min(r, lb / 2);
+      var s1 = [p[0] + ax / la * da, p[1] + ay / la * da], e1 = [p[0] + bx / lb * db, p[1] + by / lb * db];
+      for (var k = 0; k <= n; k++) { var t = k / n, u = 1 - t; out.push((u * u * s1[0] + 2 * u * t * p[0] + t * t * e1[0]).toFixed(2) + "px " + (u * u * s1[1] + 2 * u * t * p[1] + t * t * e1[1]).toFixed(2) + "px"); }
+    }
+    return "polygon(" + out.join(",") + ")";
+  }
+  var CW = 400, CH = 536;
+  function place(o) {
+    var a = Math.min(Math.abs(o), 3), sg = o < 0 ? -1 : 1, k = Math.min(2, Math.floor(a)), u = a - k, p = ST[k], q = ST[k + 1];
+    var x = lerp(p[0], q[0], u) * sg, sc = lerp(p[1], q[1], u), cut = lerp(p[2], q[2], u) / 100, dy = cut * CH;
+    var pts = sg < 0 ? [[0, 0], [CW, dy], [CW, CH - dy], [0, CH]] : [[0, dy], [CW, 0], [CW, CH], [0, CH - dy]];
+    if (Math.abs(o) < 1e-3 || cut < 1e-4) pts = [[0, 0], [CW, 0], [CW, CH], [0, CH]];
+    return { t: "translateX(" + x.toFixed(1) + "px) scale(" + sc.toFixed(3) + ")", z: Math.round(100 - Math.abs(o) * 10), clip: roundPoly(pts, 20 / sc, 6) };
+  }
+  function render() {
+    cards.forEach(function (el, i) {
+      var o = off(i), p = place(o);
+      if (prev[i] === undefined || Math.abs(o - prev[i]) > 2.5) { el.classList.add("jump"); void el.offsetWidth; } else el.classList.remove("jump");
+      el.style.transform = p.t; el.style.zIndex = p.z; el.querySelector(".ph").style.clipPath = p.clip; el.classList.toggle("on", Math.abs(o) < .5); prev[i] = o;
+    });
+    requestAnimationFrame(function () { requestAnimationFrame(function () { cards.forEach(function (c) { c.classList.remove("jump"); }); }); });
+  }
+  function go(i) { idx = ((i % N) + N) % N; idxF = idx; render(); restart(); }
+  var visible = true;
+  var acc = 0, firstMove = true;
+  function inViewRv() { var r = rv.getBoundingClientRect(), vh = window.innerHeight; return r.bottom > vh * .15 && r.top < vh * .85; }
+  /* карусель листается сама, пока блок на экране; наведение мыши её не останавливает */
+  function restart() { clearInterval(timer); acc = 0; if (reduce || mobile()) return; timer = setInterval(function () { if (document.hidden || dragging || !inViewRv()) return; acc += 400; if (acc >= (firstMove ? 1600 : 5200)) { firstMove = false; go(idx + 1); } }, 400); }
+  var sx = 0, base = 0, moved = false, scale = 1, pid = 0;
+  stage.addEventListener("pointerdown", function (e) { if (mobile() || e.button > 0) return; dragging = true; moved = false; sx = e.clientX; base = idxF; clearInterval(timer); scale = Math.min(window.innerWidth / 1440, (window.innerHeight - 120) / 700); stage.classList.add("drag"); pid = e.pointerId; });
+  stage.addEventListener("pointermove", function (e) { if (!dragging) return; var dx = (e.clientX - sx) / scale; if (Math.abs(dx) > 6 && !moved) { moved = true; try { stage.setPointerCapture(pid); } catch (x) {} } idxF = base - dx / 470; render(); });
+  function endDrag() { if (!dragging) return; dragging = false; stage.classList.remove("drag"); idx = ((Math.round(idxF) % N) + N) % N; idxF = idx; render(); restart(); }
+  stage.addEventListener("pointerup", endDrag); stage.addEventListener("pointercancel", endDrag);
+  cards.forEach(function (el, i) { el.addEventListener("click", function () { if (!moved) go(i); }); });
+  var wheelLock = 0;
+  stage.addEventListener("wheel", function (e) { if (Math.abs(e.deltaX) < Math.abs(e.deltaY) || Math.abs(e.deltaX) < 20 || Date.now() < wheelLock) return; e.preventDefault(); wheelLock = Date.now() + 450; go(idx + (e.deltaX > 0 ? 1 : -1)); }, { passive: false });
+  stage.tabIndex = 0; stage.setAttribute("aria-label", "Отзывы клиентов, листайте стрелками");
+  stage.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") go(idx + 1); else if (e.key === "ArrowLeft") go(idx - 1); });
+  function fit() {
+    if (mobile()) { scaler.style.transform = ""; return; }
+    var vw = window.innerWidth, s = Math.min(vw / 1440, (window.innerHeight - 120) / 700), ox = (vw - 1440 * s) / 2;
+    rv.style.height = (700 * s) + "px";
+    scaler.style.transform = "translate(" + ox + "px," + (-48 * s) + "px) scale(" + s + ")";
+    var half = vw / s / 2 - 20 / s, k = Math.min(1, (half - 128) / 640), Gp = (half - 640 * k) / 2;
+    var w0 = 400 * k, w1 = 264 * k, w2 = 176 * k, c1 = w0 / 2 + Gp + w1 / 2, c2 = c1 + w1 / 2 + Gp + w2 / 2;
+    ST[0][1] = k; ST[1] = [c1, .66 * k, 7.4]; ST[2] = [c2, .44 * k, 0]; ST[3] = [c2 + 260, .44 * k, 0];
+  }
+  window.addEventListener("resize", function () { fit(); render(); if (mobile()) clearInterval(timer); else restart(); });
+  document.addEventListener("visibilitychange", function () { if (document.hidden) clearInterval(timer); else restart(); });
+  if ("IntersectionObserver" in window) 
+  fit(); render(); restart();
+})();
+
+/* ---------- вопросы ---------- */
+(function () {
+  var qs = Array.prototype.slice.call(document.querySelectorAll("#f-list .q"));
+  qs.forEach(function (q) {
+    q.querySelector(".qb").addEventListener("click", function () {
+      var open = q.classList.contains("open");
+      qs.forEach(function (o) { o.classList.remove("open"); o.querySelector(".qb").setAttribute("aria-expanded", "false"); });
+      if (!open) { q.classList.add("open"); q.querySelector(".qb").setAttribute("aria-expanded", "true"); }
+    });
+  });
+})();
+
+/* ---------- заявка ---------- */
+(function () {
+  var sec = document.getElementById("apply"), form = G("a-form");
+  function reveal() { sec.classList.add("in"); }
+  if (reduce || !("IntersectionObserver" in window)) reveal();
+  else new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { reveal(); o.disconnect(); } }, { threshold: .35 }).observe(sec);
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); var ok = true;
+    ["name", "phone"].forEach(function (n) { var el = form.elements[n], v = el.value.trim(), good = n === "phone" ? v.replace(/\D/g, "").length >= 10 : v.length > 1; el.classList.toggle("bad", !good); if (!good) ok = false; });
+    if (ok) form.classList.add("done");
+  });
+  Array.prototype.forEach.call(form.querySelectorAll(".f"), function (el) { el.addEventListener("input", function () { el.classList.remove("bad"); }); });
+})();
+
+/* ---------- закреплённый хедер ---------- */
+(function () {
+  var h = G("hdr");
+  function f() { h.classList.toggle("stuck", window.scrollY > 8); }
+  window.addEventListener("scroll", f, { passive: true }); f();
+})();
+
+/* ---------- заявка: круги слегка реагируют на скролл ---------- */
+(function () {
+  var panel = document.querySelector(".s-apply .panel"); if (!panel || reduce) return;
+  var circles = Array.prototype.slice.call(panel.querySelectorAll(".circle")); // c3 (большой), c2, c1
+  var K = [[10, .018], [18, .034], [28, .06]], cur = .5, last = 0;
+  function tick(now) {
+    var dt = last ? Math.min(.05, (now - last) / 1000) : .016; last = now;
+    var r = panel.getBoundingClientRect(), vh = window.innerHeight, tgt = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+    cur += (tgt - cur) * (1 - Math.exp(-dt * 5));
+    var d = cur - .5;
+    circles.forEach(function (c, i) { var k = K[i]; c.style.setProperty("--cy", (d * -k[0] * 4).toFixed(1) + "px"); c.style.setProperty("--cs", (1 + d * k[1] * 4).toFixed(4)); });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+/* ---------- типографика: неразрывные пробелы после коротких слов, чтобы не висели в конце строки ---------- */
+(function () {
+  var W = "в|во|к|ко|с|со|у|о|об|обо|от|до|по|на|за|из|изо|без|для|над|под|при|про|и|а|но|да|не|ни|же|ли|бы";
+  var re = new RegExp("(^|[\\s(«„\"])(" + W + ")[ \\t\\n]+", "gi");
+  function fix(s) { var p; do { p = s; s = s.replace(re, "$1$2 "); } while (s !== p); return s.replace(/(\d)[ ]+(?=[₽%А-Яа-яA-Za-z])/g, "$1 ").replace(/[ ]+—/g, " —"); }
+  function run(root) {
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: function (n) { var p = n.parentNode; if (!p || /^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT; return NodeFilter.FILTER_ACCEPT; } }), n, list = [];
+    while ((n = w.nextNode())) list.push(n);
+    list.forEach(function (t) { var v = fix(t.nodeValue); if (v !== t.nodeValue) t.nodeValue = v; });
+  }
+  run(document.body);
+  window.__nbspFix = run;
+})();
+
+/* ---------- мягкое появление блоков при прокрутке ---------- */
+(function () {
+  if (reduce) return;
+  var els = [].slice.call(document.querySelectorAll(".s-hero .lead, .s-hero .actions, .s-over .h2, .s-over .wrap, .s-aud .copy, .s-sol .hd, .s-sol .bg, .s-rev .title, .s-faq .h2, .s-faq .list, .foot > div"));
+  els.forEach(function (e, i) { e.classList.add("fx"); if (i % 3 === 1) e.classList.add("fx-d1"); if (i % 3 === 2) e.classList.add("fx-d2"); });
+  if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("fx-in"); }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("fx-in"); io.unobserve(en.target); } });
+  }, { threshold: .15, rootMargin: "0px 0px -8% 0px" });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script></body></html>
