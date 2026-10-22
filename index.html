@@ -215,7 +215,7 @@ section[id] { scroll-margin-top: 112px; }
 .s-sol .mkt .btn-primary { margin-top: auto; align-self: flex-start; }
 @keyframes s-run { to { transform: translateX(calc(-50% - 6px)); } }
 .s-how { margin-top: 96px; padding: 0; --k: 1; --ph: 467px; --e: 0; --pw: calc(100vw - 2 * var(--m)); --t0: max(104px, calc((100vh - var(--ph)) / 2)); --b0: calc(100vh - var(--t0) - var(--ph)); }
-.s-how .pin { position: relative; height: calc(100vh + 135vh); padding: 0; }
+.s-how .pin { position: relative; height: calc(100vh + 110vh); padding: 0; }
 .s-how .sticky { position: sticky; top: 0; height: 100vh; margin: 0; }
 .s-how .panel { position: absolute; left: calc(var(--m) * (1 - var(--e))); right: calc(var(--m) * (1 - var(--e))); top: calc(var(--t0) * (1 - var(--e))); bottom: calc(var(--b0) * (1 - var(--e))); border-radius: calc(20px * (1 - var(--e))); background: var(--tile); overflow: hidden; }
 .s-how .inner { position: absolute; left: 50%; top: 50%; width: var(--pw); height: var(--ph); transform: translate(-50%, -50%); }
@@ -286,7 +286,7 @@ section[id] { scroll-margin-top: 112px; }
 .s-faq .ans > div { overflow: hidden; }
 .s-faq .ans p { margin: 0; padding: 0 16px 24px; font-size: 16px; line-height: 130%; color: var(--text2); max-width: 720px; }
 .s-apply { margin-top: 96px; padding: 0; --e: 0; --aw: calc(100vw - 2 * var(--m)); --ah: 560px; --t0: max(96px, calc((100vh - var(--ah)) / 2)); --b0: max(0px, calc(100vh - var(--t0) - var(--ah))); }
-.s-apply .pin { position: relative; height: calc(100vh + 90vh); }
+.s-apply .pin { position: relative; height: calc(100vh + 40vh); }
 .s-apply .sticky { position: sticky; top: 0; height: 100vh; }
 .s-apply .panel { position: absolute; left: calc(var(--m) * (1 - var(--e))); right: calc(var(--m) * (1 - var(--e))); top: calc(var(--t0) * (1 - var(--e))); bottom: calc(var(--b0) * (1 - var(--e))); border-radius: calc(28px * (1 - var(--e))); background: #4A3667; overflow: hidden; }
 .s-apply .inner { position: absolute; left: 50%; top: 50%; width: var(--aw); height: var(--ah); transform: translate(-50%, -50%); }
@@ -678,6 +678,7 @@ var vis = {};
   map.forEach(function (m) { var el = document.querySelector(m[1]); vis[m[0]] = true; if (!("IntersectionObserver" in window)) { el.classList.add("act"); return; }
     new IntersectionObserver(function (es) { vis[m[0]] = es[0].isIntersecting; el.classList.toggle("act", es[0].isIntersecting); }, { rootMargin: "120px 0px" }).observe(el); });
 })();
+var easeS = function (u) { return .5 - Math.cos(Math.PI * u) / 2; };
 var ease3 = function (u) { return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; };
 
 /* ---------- хиро: первая строка меняется, две стрелки рисуются, по ним идёт пульс ---------- */
@@ -952,8 +953,7 @@ var ease3 = function (u) { return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u +
   function progress() { var r = pin.getBoundingClientRect(), len = pin.offsetHeight - window.innerHeight; return clamp(-r.top / len, 0, 1); }
   function draw(P) {
     if (mobile()) { cards.forEach(function (c) { c.style.transform = ""; c.style.boxShadow = ""; }); return; }
-    root.style.setProperty("--e", (1 - ease3(clamp(P / 0.36, 0, 1))).toFixed(4));
-    var d = clamp((P - 0.3) / 0.65, 0, 1) * 150;
+    var d = clamp((P - 0.02) / 0.8, 0, 1) * 150;
     cards.forEach(function (c, i) {
       var p = S[i], t = ease3(clamp((d - p.a) / (p.b - p.a), 0, 1));
       var x = lerp(p.x0, p.x1, t) / 1312 * pw, y = ph / 2 + lerp(0, p.y1, t) * k, s = lerp(p.s0, p.s1, t), r = lerp(p.r0, p.r1, t), w = 313 * k, h = 339 * k;
@@ -962,9 +962,13 @@ var ease3 = function (u) { return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u +
     });
   }
   var cur = 0, started = false, last = 0, lastDrawn = -1;
+  var ce = 0, eStarted = false, lastE = -1;
   function tick(now) {
     var dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016; last = now;
     var rr = pin.getBoundingClientRect(); if (rr.bottom < -300 || rr.top > window.innerHeight + 300) { requestAnimationFrame(tick); return; }
+    var vh = window.innerHeight, te = clamp((vh * .95 - rr.top) / (vh * .9), 0, 1);
+    if (!eStarted) { ce = te; eStarted = true; } ce += (te - ce) * (1 - Math.exp(-dt * 7)); if (Math.abs(te - ce) < .0005) ce = te;
+    if (Math.abs(ce - lastE) > .0003 && !mobile()) { lastE = ce; root.style.setProperty("--e", (1 - easeS(ce)).toFixed(4)); }
     var raw = progress(); if (!started) { cur = raw; started = true; }
     cur += (raw - cur) * (1 - Math.exp(-dt * 8)); if (Math.abs(raw - cur) < 0.0002) cur = raw;
     if (Math.abs(cur - lastDrawn) > .0003 || lastDrawn < 0) { lastDrawn = cur; draw(cur); } requestAnimationFrame(tick);
@@ -1119,9 +1123,9 @@ var ease3 = function (u) { return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u +
   function tick(now) {
     var dt = last ? Math.min(.05, (now - last) / 1000) : .016; last = now;
     var r = pin.getBoundingClientRect(); if (r.bottom < -300 || r.top > window.innerHeight + 300) { requestAnimationFrame(tick); return; }
-    var len = pin.offsetHeight - window.innerHeight, raw = clamp(-r.top / len, 0, 1); if (!started) { cur = raw; started = true; }
-    cur += (raw - cur) * (1 - Math.exp(-dt * 8)); if (Math.abs(raw - cur) < .0002) cur = raw;
-    root.style.setProperty("--e", (1 - ease3(clamp(cur / .6, 0, 1))).toFixed(4));
+    var vh = window.innerHeight, te = clamp((vh * .95 - r.top) / (vh * .9), 0, 1); if (!started) { cur = te; started = true; }
+    cur += (te - cur) * (1 - Math.exp(-dt * 7)); if (Math.abs(te - cur) < .0005) cur = te;
+    root.style.setProperty("--e", (1 - easeS(cur)).toFixed(4));
     requestAnimationFrame(tick);
   }
   window.addEventListener("resize", layout); layout(); requestAnimationFrame(tick);
